@@ -1,28 +1,21 @@
 package dao;
 
-import dto.FilmeDTO;
-import dto.FuncionarioDTO;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public class ConexaoAdministradorDAO implements AdministradorDAO {
+public class ConexaoAdministradorDAO {
 
-    public void cadastrarFuncionario(String nomeCompleto, int cpf, int senha) {
-   
-    }
+    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String USER = "postgres"; // Ajuste para seu usuário PostgreSQL
+    private static final String PASSWORD = "15344155"; // Ajuste para sua senha PostgreSQL
 
-    public void editarInformacoesFuncionario(FuncionarioDTO editarInformacao) {
-          
-    }
-
-    public void cadastrarFilme(int id, String titulo, String sinopse, String genero, int duracao, 
-    int classificacaoIndicativa) {
-          
-    }
-
-    public void excluirFilme(int id) {
-          
-    }
-
-    public void cadastrarSalaExibicao(int id, String endereco, FilmeDTO[] filmes) {
-           
+    public static Connection conectar() throws SQLException {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("Driver PostgreSQL nao encontrado.", e);
+        }
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }

@@ -1,4 +1,4 @@
-package DTO;
+package dto;
 
 public class FilmeDTO {
     private Long id;
@@ -9,9 +9,16 @@ public class FilmeDTO {
 
 
     
-    public FilmeDTO(Long id) {
+   /* public FilmeDTO(Long id) {
 	    this.id = System.currentTimeMillis();
     }
+
+    */
+
+    public FilmeDTO(int i, String string) {
+        this.id = System.currentTimeMillis();
+    }
+
     public Long getId() {
         return id;
     }

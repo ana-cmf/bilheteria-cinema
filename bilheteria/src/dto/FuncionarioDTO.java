@@ -1,9 +1,9 @@
-package DTO;
+package dto;
 
 public class FuncionarioDTO {
     private String nomeCompleto;
     private int CPF;
-    private String senha;
+    private int senha;
     private String email;
     
     public String getNomeCompleto() {
@@ -18,11 +18,11 @@ public class FuncionarioDTO {
     public void setCPF(int cPF) {
         CPF = cPF;
     }
-    public String getSenha() {
+    public int getSenha() {
         return senha;
     }
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSenha(int i) {
+        this.senha = i;
     }
     public String getEmail() {
         return email;
@@ -30,5 +30,4 @@ public class FuncionarioDTO {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }
