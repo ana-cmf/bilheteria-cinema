@@ -3,7 +3,7 @@ package dao;
 import dto.FilmeDTO;
 import dto.FuncionarioDTO;
 
-public class ConexaoAdministradorDAO implements AdministradorIF {
+public class ConexaoAdministradorDAO implements AdministradorDAO {
 
     public void cadastrarFuncionario(String nomeCompleto, int cpf, int senha) {
    
