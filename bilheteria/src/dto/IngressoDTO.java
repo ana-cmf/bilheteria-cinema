@@ -1,4 +1,4 @@
-package DTO;
+package dto;
 
 public class IngressoDTO {
     private ExibicaoDTO exibicao;
@@ -51,6 +51,4 @@ public class IngressoDTO {
     public void setPagamentoRealizado(boolean pagamentoRealizado) {
         this.pagamentoRealizado = pagamentoRealizado;
     }
-    
-
 }

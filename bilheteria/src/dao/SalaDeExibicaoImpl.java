@@ -30,4 +30,24 @@ public class SalaDeExibicaoImpl implements SalaDeExibicaoDAO {
             e.printStackTrace();
         }
     }
+
+    
+    public void excluirSalaExibicao(SalaDeExibicaoDTO sala) {
+        
+    /*   String sql = "DELETE FROM bilheteria.sala_exibicao WHERE identificador = ?";
+    
+        try (Connection conn = ConexaoBancoDeDados.conectar();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+    
+            pstmt.setInt(1, sala.getNumeroDaSala());
+        //  pstmt.setString(2, sala.getModeloDeExibicao().getNome());
+            pstmt.setInt(3, sala.getQuantidadeDeAssentos());
+    
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    */
+
+    } 
 }

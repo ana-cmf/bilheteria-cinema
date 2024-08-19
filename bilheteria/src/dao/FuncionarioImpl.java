@@ -36,4 +36,20 @@ public class FuncionarioImpl implements FucionarioDAO {
             e.printStackTrace();
         }
     }
+
+    
+    public void excluirFuncionario(FuncionarioDTO funcionario) {
+        
+        String sql = "DELETE FROM bilheteria.funcionarios WHERE cpf = ?";
+    
+        try (Connection conn = ConexaoBancoDeDados.conectar();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+    
+            pstmt.setInt(1, funcionario.getCPF());
+    
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    } 
 }

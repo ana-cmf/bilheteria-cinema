@@ -5,5 +5,5 @@ import dto.FilmeDTO;
 public interface FilmeDAO {
 
     public void cadastrarFilme(FilmeDTO filme);
-    public void excluirFilme(int id);
+    public void excluirFilme(FilmeDTO filme);
 }

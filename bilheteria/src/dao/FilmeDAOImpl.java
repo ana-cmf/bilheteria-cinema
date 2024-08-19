@@ -23,17 +23,16 @@ public class FilmeDAOImpl implements FilmeDAO {
         }
     }
 
-    public void excluirFilme(int id) {
+    public void excluirFilme(FilmeDTO filme) {
         String sql = "DELETE FROM bilheteria.filmes WHERE id = ?";
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
+            pstmt.setLong(1, filme.getId());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 }
