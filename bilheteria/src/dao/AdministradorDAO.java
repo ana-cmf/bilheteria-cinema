@@ -1,14 +1,14 @@
 package dao;
 
+import dto.SalaDeExibicaoDTO;
 import dto.FilmeDTO;
 import dto.FuncionarioDTO;
 
 public interface AdministradorDAO {
 
-    public void cadastrarFuncionario(String nomeCompleto, int cpf, int senha);
-    public void editarInformacoesFuncionario(FuncionarioDTO editarInformacao);
-    public void cadastrarFilme(int id, String titulo, String sinopse, String genero, 
-    int duracao, int classificacaoIndicativa);
+    public void cadastrarFuncionario(FuncionarioDTO funcionario);
+    public void editarInformacoesFuncionario(FuncionarioDTO funcionario);
+    public void cadastrarFilme(FilmeDTO filme);
     public void excluirFilme(int id);
-    public void cadastrarSalaExibicao(int id, String endereco, FilmeDTO[] filmes);
+    public void cadastrarSalaExibicao(SalaDeExibicaoDTO sala);
 }

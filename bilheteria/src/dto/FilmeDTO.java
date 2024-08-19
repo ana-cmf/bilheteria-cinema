@@ -7,21 +7,14 @@ public class FilmeDTO {
     private int duracaoDoFilme;
     private int classificacaoIndicativa;
 
-
-    
-   /* public FilmeDTO(Long id) {
+    public FilmeDTO(Long id) {
 	    this.id = System.currentTimeMillis();
-    }
-
-    */
-
-    public FilmeDTO(int i, String string) {
-        this.id = System.currentTimeMillis();
     }
 
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -48,6 +41,5 @@ public class FilmeDTO {
     }
     public void setClassificacaoIndicativa(int classificacaoIndicativa) {
         this.classificacaoIndicativa = classificacaoIndicativa;
-    }
-    
+    }  
 }
