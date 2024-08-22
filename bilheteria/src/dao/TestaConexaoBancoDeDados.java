@@ -8,7 +8,7 @@ public class TestaConexaoBancoDeDados {
     public static void main(String[] args) {
         Connection conn = null;
         try {
-            conn = ConexaoAdministradorDAO.conectar();
+            conn = ConexaoBancoDeDados.conectar();
             if (conn != null) {
                 System.out.println("Conexao bem-sucedida!");
             } else {

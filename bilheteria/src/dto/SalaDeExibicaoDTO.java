@@ -1,4 +1,4 @@
-package DTO;
+package dto;
 
 public class SalaDeExibicaoDTO{
     private int numeroDaSala;

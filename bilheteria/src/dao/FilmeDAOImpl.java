@@ -8,7 +8,7 @@ import dto.FilmeDTO;
 public class FilmeDAOImpl implements FilmeDAO {
 
     public void cadastrarFilme(FilmeDTO filme) {
-        String sql = "INSERT INTO bilheteria.filmes (id, titulo, sinopse, genero, duracao, classificacao) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO bilheteria.filme (id, titulo, sinopse, genero, duracao, classificacao) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -24,7 +24,7 @@ public class FilmeDAOImpl implements FilmeDAO {
     }
 
     public void excluirFilme(FilmeDTO filme) {
-        String sql = "DELETE FROM bilheteria.filmes WHERE id = ?";
+        String sql = "DELETE FROM bilheteria.filme WHERE id = ?";
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
