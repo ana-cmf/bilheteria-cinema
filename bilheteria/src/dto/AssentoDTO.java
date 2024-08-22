@@ -1,4 +1,4 @@
-package DTO;
+package dto;
 
 public class AssentoDTO {
     private int posicao;
@@ -16,5 +16,4 @@ public class AssentoDTO {
     public void setReservado(boolean reservado) {
         this.reservado = reservado;
     }
-
 }

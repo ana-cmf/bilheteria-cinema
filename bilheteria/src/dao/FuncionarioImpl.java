@@ -8,7 +8,7 @@ import dto.FuncionarioDTO;
 public class FuncionarioImpl implements FucionarioDAO {
 
     public void cadastrarFuncionario(FuncionarioDTO funcionario) {
-        String sql = "INSERT INTO bilheteria.funcionarios (nome_completo, cpf, senha) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO bilheteria.funcionario (nome_completo, cpf, senha) VALUES (?, ?, ?)";
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -23,7 +23,7 @@ public class FuncionarioImpl implements FucionarioDAO {
     }
 
     public void editarInformacoesFuncionario(FuncionarioDTO funcionario) {
-        String sql = "UPDATE bilheteria.funcionarios SET nome_completo = ?, senha = ? WHERE cpf = ?";
+        String sql = "UPDATE bilheteria.funcionario SET nome_completo = ?, senha = ? WHERE cpf = ?";
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -40,7 +40,7 @@ public class FuncionarioImpl implements FucionarioDAO {
     
     public void excluirFuncionario(FuncionarioDTO funcionario) {
         
-        String sql = "DELETE FROM bilheteria.funcionarios WHERE cpf = ?";
+        String sql = "DELETE FROM bilheteria.funcionario WHERE cpf = ?";
     
         try (Connection conn = ConexaoBancoDeDados.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
