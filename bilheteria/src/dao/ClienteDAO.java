@@ -6,5 +6,4 @@ public interface ClienteDAO {
 
     public void cadastrarCliente(ClienteDTO cliente);
     public void excluirCliente(ClienteDTO cliente);
-
 }
