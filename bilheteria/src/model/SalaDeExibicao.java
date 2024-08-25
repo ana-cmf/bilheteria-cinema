@@ -1,9 +1,14 @@
+package model;
+
 public class SalaDeExibicao {
-    
     private int numeroDaSala;
     private ModeloDeExibicao modeloDeExibicao;
     private int quantidadeDeAssentos;
     private Assento[][] assentos = new Assento[4][10];
+
+    public SalaDeExibicao(Assento[][] assentos){
+        this.assentos = assentos;
+    }
 
     public int getNumeroDaSala() {
         return numeroDaSala;

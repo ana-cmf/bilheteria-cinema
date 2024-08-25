@@ -8,7 +8,7 @@ public class FilmeDTO {
     private int classificacaoIndicativa;
 
     public FilmeDTO(Long id) {
-	    this.id = System.currentTimeMillis();
+	    this.id = id;
     }
 
     public Long getId() {

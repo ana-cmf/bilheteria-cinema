@@ -1,4 +1,7 @@
-public class Ingresso {
+package model;
+
+public class Ingresso{
+
     private Exibicao exibicao;
     private Assento assento;
     private Cliente cliente;
@@ -49,6 +52,6 @@ public class Ingresso {
     public void setPagamentoRealizado(boolean pagamentoRealizado) {
         this.pagamentoRealizado = pagamentoRealizado;
     }
-    
-
 }
+
+    
