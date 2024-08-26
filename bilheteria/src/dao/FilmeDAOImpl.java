@@ -51,7 +51,6 @@ public class FilmeDAOImpl implements FilmeDAO {
 
         return filme;
     }
-    }
 
     public void excluirFilme(FilmeDTO filme) {
         String sql = "DELETE FROM bilheteria.filme WHERE id = ?";

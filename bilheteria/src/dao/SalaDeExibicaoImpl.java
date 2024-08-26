@@ -36,10 +36,10 @@ public class SalaDeExibicaoImpl implements SalaDeExibicaoDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                sala = new SalaDeExibicaoDTO();
+                sala = new SalaDeExibicaoDTO(null);
                 sala.setNumeroDaSala(rs.getInt("numero_sala"));
-                String modeloExibicaoStr = rs.getString("modelo_exibicao");
-                sala.setModeloDeExibicao(ModeloDeExibicaoDTO.valueOf(modeloExibicaoStr));
+            //  String modeloExibicaoStr = rs.getString("modelo_exibicao");
+            //  sala.setModeloDeExibicao(ModeloDeExibicaoDTO.valueOf(modeloExibicaoStr));
                 sala.setQuantidadeDeAssentos(rs.getInt("quantidade_assentos"));
             }
 

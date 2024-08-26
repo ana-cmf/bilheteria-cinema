@@ -6,23 +6,22 @@ public class AdministradorDTO {
     private String senha;
 
     public static AdministradorDTO getInstancia(){
-          return instancia;
-      }
+        return instancia;
+    }
   
-      public String getNomeUsuario() {
-          return nomeUsuario;
-      }
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
   
-      public void setNomeUsuario(String nomeUsuario) {
-          this.nomeUsuario = nomeUsuario;
-      }
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
   
-      public String getSenha() {
-          return senha;
-      }
+    public String getSenha() {
+        return senha;
+    }
   
-      public void setSenha(String senha) {
+    public void setSenha(String senha) {
           this.senha = senha;
-      }
-      
+    }   
   }

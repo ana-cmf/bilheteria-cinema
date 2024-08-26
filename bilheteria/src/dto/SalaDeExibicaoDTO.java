@@ -33,5 +33,5 @@ public class SalaDeExibicaoDTO{
     }
     public void setAssentos(AssentoDTO[][] assentos) {
         this.assentos = assentos;
-}
+    }   
 }
