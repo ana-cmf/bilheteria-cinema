@@ -10,12 +10,11 @@ import dto.AdministradorDTO;
 public class AdministradorDAOImpl implements AdministradorDAO {
 
     public void cadastrarAdministrador(AdministradorDTO administrador) {
-        String sql = "INSERT INTO bilheteria.administrador (nome_usario, senha) VALUES (?, ?)";
-
+        String sql = "INSERT INTO bilheteria.administrador (nome_usuario_admin, senha_admin) VALUES (?, ?)";
         try (Connection conn = ConexaoBancoDeDados.conectar();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(2, administrador.getNomeUsuario());
-            pstmt.setString(3, administrador.getSenha());
+            pstmt.setString(1, administrador.getNomeUsuario());
+            pstmt.setString(2, administrador.getSenha());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -24,7 +23,7 @@ public class AdministradorDAOImpl implements AdministradorDAO {
     }
 
     public void excluirAdministrador(AdministradorDTO administrador) {
-        String sql = "DELETE FROM bilheteria.administrador WHERE nome_usuario = ? AND senha = ?";
+        String sql = "DELETE FROM bilheteria.administrador WHERE nome_usuario_admin = ? AND senha_admin = ?";
     
         try (Connection conn = ConexaoBancoDeDados.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -39,11 +38,10 @@ public class AdministradorDAOImpl implements AdministradorDAO {
     }
 
     public boolean autenticarAdministrador(AdministradorDTO administrador) {
-        String sql = "SELECT COUNT(*) FROM bilheteria.administrador WHERE nome_usuario = ? AND senha = ?";
+        String sql = "SELECT COUNT(*) FROM bilheteria.administrador WHERE nome_usuario_admin = ? AND senha_admin = ?";
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-             
+            PreparedStatement pstmt = conn.prepareStatement(sql)) { 
             pstmt.setString(1, administrador.getNomeUsuario());
             pstmt.setString(2, administrador.getSenha());
 

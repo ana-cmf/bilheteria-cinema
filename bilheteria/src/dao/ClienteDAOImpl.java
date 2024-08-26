@@ -9,7 +9,7 @@ import dto.ClienteDTO;
 public class ClienteDAOImpl implements ClienteDAO {
 
     public void cadastrarCliente(ClienteDTO cliente) {
-       String sql = "INSERT INTO bilheteria.cliente (nome_completo, cpf, email) VALUES (?, ?, ?)";
+       String sql = "INSERT INTO bilheteria.cliente (nome_completo_cliente, cpf_cliente, email_cliente) VALUES (?, ?, ?)";
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -25,7 +25,7 @@ public class ClienteDAOImpl implements ClienteDAO {
     
     public void excluirCliente(ClienteDTO cliente) {
         
-        String sql = "DELETE FROM bilheteria.cliente WHERE cpf = ?";
+        String sql = "DELETE FROM bilheteria.cliente WHERE cpf_cliente = ?";
     
         try (Connection conn = ConexaoBancoDeDados.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
