@@ -8,7 +8,12 @@ public class IngressoDTO {
     private FormaDePagamentoDTO formaDePagamento;
     private TipoDeEntradaDTO tipoDeEntrada;
     private boolean pagamentoRealizado;
+
     
+    
+    public IngressoDTO(TipoDeEntradaDTO tipoDeEntrada) {
+        this.tipoDeEntrada = tipoDeEntrada;
+    }
     public ExibicaoDTO getExibicao() {
         return exibicao;
     }

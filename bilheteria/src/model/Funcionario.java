@@ -1,3 +1,7 @@
+package model;
+
+import dto.ClienteDTO;
+
 public class Funcionario {
     private String nomeCompleto;
     private int CPF;
@@ -28,6 +32,27 @@ public class Funcionario {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
+
+    public ClienteDTO Cadastrarcliente (String nomeCompleto, int CPF, String email) {
+        ClienteDTO cliente = new ClienteDTO();
+        cliente.setNomeCompleto(nomeCompleto);
+        cliente.setCPF(CPF);
+        cliente.setEmail(email);
+        return cliente;
+    }
+    public void VerPerfil(String nomeCompleto, int CPF, String email) {
+
+}
+    public void AutenticarFuncionario(String email, String senha){
+
+    }
+    public void AlterarInformacoesCliente(){
+
+    }
+    public void FinalizarCompra(){
+
+    }
+    public void CancelarCompra(){
+        
+    }
 }

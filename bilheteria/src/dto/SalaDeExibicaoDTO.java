@@ -1,16 +1,20 @@
 package dto;
 
 public class SalaDeExibicaoDTO{
-    private int numeroDaSala;
+    private int idSala;
     private ModeloDeExibicaoDTO modeloDeExibicao;
     private int quantidadeDeAssentos;
     private AssentoDTO[][] assentos = new AssentoDTO[4][10];
 
-    public int getNumeroDaSala() {
-        return numeroDaSala;
+     public SalaDeExibicaoDTO(AssentoDTO[][] assentos){
+        this.assentos = assentos;
     }
-    public void setNumeroDaSala(int numeroDaSala) {
-        this.numeroDaSala = numeroDaSala;
+
+    public int getNumeroDaSala() {
+        return idSala;
+    }
+    public void setNumeroDaSala(int idSala) {
+        this.idSala = idSala;
     }
     public ModeloDeExibicaoDTO getModeloDeExibicao() {
         return modeloDeExibicao;
@@ -29,6 +33,5 @@ public class SalaDeExibicaoDTO{
     }
     public void setAssentos(AssentoDTO[][] assentos) {
         this.assentos = assentos;
-
-
+    }   
 }

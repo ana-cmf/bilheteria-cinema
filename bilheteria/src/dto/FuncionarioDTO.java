@@ -3,7 +3,7 @@ package dto;
 public class FuncionarioDTO {
     private String nomeCompleto;
     private int CPF;
-    private int senha;
+    private String senha;
     private String email;
     
     public String getNomeCompleto() {
@@ -18,11 +18,11 @@ public class FuncionarioDTO {
     public void setCPF(int cPF) {
         CPF = cPF;
     }
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
-    public void setSenha(int i) {
-        this.senha = i;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
     public String getEmail() {
         return email;

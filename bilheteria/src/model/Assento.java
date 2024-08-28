@@ -1,3 +1,5 @@
+package model;
+
 public class Assento {
     private int posicao;
     private boolean reservado;
@@ -14,5 +16,4 @@ public class Assento {
     public void setReservado(boolean reservado) {
         this.reservado = reservado;
     }
-
 }

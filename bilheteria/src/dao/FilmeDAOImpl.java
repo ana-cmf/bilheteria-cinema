@@ -5,13 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import dto.FilmeDTO;
-import dto.ModeloDeExibicaoDTO;
-import dto.SalaDeExibicaoDTO;
 
 public class FilmeDAOImpl implements FilmeDAO {
 
     public void cadastrarFilme(FilmeDTO filme) {
-        String sql = "INSERT INTO bilheteria.filme (id, titulo, sinopse, genero, duracao, classificacao) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO bilheteria.filme (id_filme, titulo_filme, sinopse_filme, genero_filme, duracao_filme, classificacao_indicativa_filme) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -27,7 +25,7 @@ public class FilmeDAOImpl implements FilmeDAO {
     }
 
     public FilmeDTO buscarFilme(FilmeDTO buscarFilme) {
-        String sql = "SELECT * FROM bilheteria.filme WHERE id = ?";
+        String sql = "SELECT * FROM bilheteria.filme WHERE id_filme = ?";
         FilmeDTO filme = null;
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
@@ -51,10 +49,9 @@ public class FilmeDAOImpl implements FilmeDAO {
 
         return filme;
     }
-    }
 
     public void excluirFilme(FilmeDTO filme) {
-        String sql = "DELETE FROM bilheteria.filme WHERE id = ?";
+        String sql = "DELETE FROM bilheteria.filme WHERE id_filme = ?";
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
