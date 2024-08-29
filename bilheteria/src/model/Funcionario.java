@@ -1,6 +1,7 @@
 package model;
 
-import dto.ClienteDTO;
+import model.execption.EmailInvalidoExecption;
+import model.execption.SenhaInvalidaException;
 
 public class Funcionario {
     private String nomeCompleto;
@@ -23,36 +24,19 @@ public class Funcionario {
     public String getSenha() {
         return senha;
     }
-    public void setSenha(String senha) {
+    public void setSenha(String senha) throws SenhaInvalidaException{
+        if(senha.length()<6){
+            throw new SenhaInvalidaException();
+        }
         this.senha = senha;
     }
     public String getEmail() {
         return email;
     }
-    public void setEmail(String email) {
+    public void setEmail(String email) throws EmailInvalidoExecption{
+        if(!(email.contains("@")) || !(email.contains("."))){
+            throw new EmailInvalidoExecption();
+        }
         this.email = email;
-    }
-
-    public ClienteDTO Cadastrarcliente (String nomeCompleto, int CPF, String email) {
-        ClienteDTO cliente = new ClienteDTO();
-        cliente.setNomeCompleto(nomeCompleto);
-        cliente.setCPF(CPF);
-        cliente.setEmail(email);
-        return cliente;
-    }
-    public void VerPerfil(String nomeCompleto, int CPF, String email) {
-
-}
-    public void AutenticarFuncionario(String email, String senha){
-
-    }
-    public void AlterarInformacoesCliente(){
-
-    }
-    public void FinalizarCompra(){
-
-    }
-    public void CancelarCompra(){
-        
     }
 }

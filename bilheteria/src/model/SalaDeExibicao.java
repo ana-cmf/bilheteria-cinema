@@ -4,10 +4,20 @@ public class SalaDeExibicao {
     private int numeroDaSala;
     private ModeloDeExibicao modeloDeExibicao;
     private int quantidadeDeAssentos;
-    private Assento[][] assentos = new Assento[4][10];
+    private Assento[] assentos = new Assento[40];
 
-    public SalaDeExibicao(Assento[][] assentos){
-        this.assentos = assentos;
+    public SalaDeExibicao( ){
+        this.assentos = new Assento[40];
+        this.quantidadeDeAssentos=assentos.length;
+        criarAssento();
+
+    }
+
+    public void  criarAssento(){
+        for (int i=0; i<assentos.length; i++) {
+            assentos[i]=new Assento();
+            assentos[i].setPosicao(i+1);
+        }
     }
 
     public int getNumeroDaSala() {
@@ -28,10 +38,10 @@ public class SalaDeExibicao {
     public void setQuantidadeDeAssentos(int quantidadeDeAssentos) {
         this.quantidadeDeAssentos = quantidadeDeAssentos;
     }
-    public Assento[][] getAssentos() {
+    public Assento[] getAssentos() {
         return assentos;
     }
-    public void setAssentos(Assento[][] assentos) {
+    public void setAssentos(Assento[] assentos) {
         this.assentos = assentos;
     }
 }
