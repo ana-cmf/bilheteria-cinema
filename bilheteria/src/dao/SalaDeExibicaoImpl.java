@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import dao.execucao.SalaDeExibicaoNaoEncontradaException;
 import dto.SalaDeExibicaoDTO;
 
 public class SalaDeExibicaoImpl implements SalaDeExibicaoDAO {
@@ -23,7 +25,7 @@ public class SalaDeExibicaoImpl implements SalaDeExibicaoDAO {
         }
     }
 
-    public SalaDeExibicaoDTO buscarSalaExibicao(SalaDeExibicaoDTO numeroDaSala) {
+    public SalaDeExibicaoDTO buscarSalaExibicao(SalaDeExibicaoDTO numeroDaSala) throws SalaDeExibicaoNaoEncontradaException {
         String sql = "SELECT * FROM bilheteria.sala_exibicao WHERE numero_sala = ?";
         SalaDeExibicaoDTO sala = null;
 
@@ -34,7 +36,7 @@ public class SalaDeExibicaoImpl implements SalaDeExibicaoDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                sala = new SalaDeExibicaoDTO(null);
+                sala = new SalaDeExibicaoDTO();
                 sala.setNumeroDaSala(rs.getInt("numero_sala"));
                 sala.setQuantidadeDeAssentos(rs.getInt("quantidade_assentos"));
             }
