@@ -6,7 +6,6 @@ public class Ingresso{
     private Assento assento;
     private Cliente cliente;
     private float preco;
-    private FormaDePagamento formaDePagamento;
     private TipoDeEntrada tipoDeEntrada;
     private boolean pagamentoRealizado;
     
@@ -34,12 +33,7 @@ public class Ingresso{
     public void setPreco(float preco) {
         this.preco = preco;
     }
-    public FormaDePagamento getFormaDePagamento() {
-        return formaDePagamento;
-    }
-    public void setFormaDePagamento(FormaDePagamento formaDePagamento) {
-        this.formaDePagamento = formaDePagamento;
-    }
+
     public TipoDeEntrada getTipoDeEntrada() {
         return tipoDeEntrada;
     }

@@ -1,4 +1,10 @@
 package model;
+
+import dto.CompraDTO;
+import dto.IngressoDTO;
+import model.execption.ClassificacaoNaoIndicadaException;
+
+
 public class Filme {
     private Long id;
     private String titulo;
@@ -41,5 +47,39 @@ public class Filme {
     public void setClassificacaoIndicativa(int classificacaoIndicativa) {
         this.classificacaoIndicativa = classificacaoIndicativa;
     }
-    
+    public void classificacaoIndicadaPelaIdade(IngressoDTO ingresso)throws ClassificacaoNaoIndicadaException{
+        int indicado =ingresso.getCliente().getIdade();
+
+        switch(classificacaoIndicativa){
+            case 0:
+                break;
+        case 10:
+            if (indicado < 10) {
+                throw new ClassificacaoNaoIndicadaException();
+            }
+            break;
+        case 12:
+            if (indicado < 12) {
+                throw new ClassificacaoNaoIndicadaException();
+            }
+            break;
+        case 14:
+            if (indicado < 14) {
+                throw new ClassificacaoNaoIndicadaException();
+            }
+            break;
+        case 16:
+            if (indicado < 16) {
+                throw new ClassificacaoNaoIndicadaException();
+            }
+            break;
+        case 18:
+            if (indicado < 18) {
+                throw new ClassificacaoNaoIndicadaException();
+            }
+            break;
+        default:
+            throw new IllegalArgumentException("Classificação indicativa desconhecida.");
+        }
+    }
 }

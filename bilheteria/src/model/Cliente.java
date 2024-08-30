@@ -1,9 +1,16 @@
 package model;
 
+import dto.FilmeDTO;
+import model.execption.CpfInvalidoException;
+import model.execption.CpfInvalidoExexption;
+import model.execption.EmailInvalidoException;
+import model.execption.EmailInvalidoExecption;
+
 public class Cliente{
     private String nomeCompleto;
-    private int CPF;
+    private String CPF;
     private String email;
+    private int idade;
 
 
     public String getNomeCompleto() {
@@ -14,19 +21,36 @@ public class Cliente{
         this.nomeCompleto = nomeCompleto;
     }
 
-    public int getCPF() {
+    public String getCPF() {
         return CPF;
     }
 
-    public void setCPF(int CPF) {
-        this.CPF = CPF;
+    public void setCPF(String cpf) throws CpfInvalidoException{
+        ValidacaoCPF num= new ValidacaoCPF();
+       if (num.CPFIsValido(cpf)){
+            this.CPF = cpf;
+       }else{
+            throw  new CpfInvalidoException();
+        
+       }
     }
 
-    public String getEmail() {
+    public String getEmail()  {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email) throws EmailInvalidoException{
+        if(!(email.contains("@")) || !(email.contains("."))){
+            throw new EmailInvalidoException();
+        }
         this.email = email;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 }
