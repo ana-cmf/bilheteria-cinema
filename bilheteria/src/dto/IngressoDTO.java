@@ -9,8 +9,6 @@ public class IngressoDTO {
     private TipoDeEntradaDTO tipoDeEntrada;
     private boolean pagamentoRealizado;
 
-    
-    
     public IngressoDTO(TipoDeEntradaDTO tipoDeEntrada) {
         this.tipoDeEntrada = tipoDeEntrada;
     }

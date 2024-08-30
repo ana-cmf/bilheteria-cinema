@@ -2,7 +2,6 @@ package dto;
 
 import java.time.LocalDateTime;
 
-
 public class ExibicaoDTO {
     private FilmeDTO filme;
     private SalaDeExibicaoDTO salaDeExibicao;

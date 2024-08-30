@@ -1,6 +1,6 @@
 package dao;
 
-import dao.execucao.SalaDeExibicaoNaoEncontradaException;
+import dao.execao.SalaDeExibicaoNaoEncontradaException;
 import dto.SalaDeExibicaoDTO;
 
 public interface SalaDeExibicaoDAO {

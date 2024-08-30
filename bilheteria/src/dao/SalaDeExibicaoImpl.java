@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import dao.execucao.SalaDeExibicaoNaoEncontradaException;
+import dao.execao.SalaDeExibicaoNaoEncontradaException;
 import dto.SalaDeExibicaoDTO;
 
 public class SalaDeExibicaoImpl implements SalaDeExibicaoDAO {

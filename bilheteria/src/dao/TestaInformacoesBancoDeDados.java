@@ -1,9 +1,9 @@
 package dao;
+
 import dto.AdministradorDTO;
 import java.util.Scanner;
 
 public class TestaInformacoesBancoDeDados {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -18,13 +18,9 @@ public class TestaInformacoesBancoDeDados {
         administrador.setSenha(senha);
 
         AdministradorDAOImpl dao = new AdministradorDAOImpl();
-    /*  dao.cadastrarAdministrador(administrador);
-
-        System.out.println("Administrador cadastrado com sucesso!"); */
-
-        dao.excluirAdministrador(administrador);
-        System.out.println("Administrador excluido com sucesso!");
-
+        dao.cadastrarAdministrador(administrador);
+        dao.buscarAdminstrador();
+        
         scanner.close();
     }
 }

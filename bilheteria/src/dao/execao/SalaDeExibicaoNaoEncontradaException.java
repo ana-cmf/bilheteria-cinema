@@ -1,4 +1,4 @@
-package dao.execucao;
+package dao.execao;
 
 public class SalaDeExibicaoNaoEncontradaException extends Exception {
 

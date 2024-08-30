@@ -4,7 +4,6 @@ public class AssentoDTO {
     private int posicao;
     private boolean reservado;
     
-    
     public int getPosicao() {
         return posicao;
     }

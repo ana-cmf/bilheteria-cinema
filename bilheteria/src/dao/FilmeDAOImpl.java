@@ -3,9 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import dao.execucao.FilmeNaoEncontradoException;
-
+import dao.execao.FilmeNaoEncontradoException;
 import java.sql.ResultSet;
 import dto.FilmeDTO;
 

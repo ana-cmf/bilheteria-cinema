@@ -1,6 +1,6 @@
 package dao;
 
-import dao.execucao.FilmeNaoEncontradoException;
+import dao.execao.FilmeNaoEncontradoException;
 import dto.FilmeDTO;
 
 public interface FilmeDAO {
