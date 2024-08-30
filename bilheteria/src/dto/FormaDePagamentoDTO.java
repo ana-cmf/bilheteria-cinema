@@ -1,5 +1,5 @@
 package dto;
 
-public enum FormaDePagamentoDTO {
+public interface FormaDePagamentoDTO {
 
 }
