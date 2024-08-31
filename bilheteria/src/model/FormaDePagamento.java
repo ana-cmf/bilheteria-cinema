@@ -1,10 +1,10 @@
 package model;
 
-import dto.IngressoDTO;
+import dto.CompraDTO;
 
 public interface FormaDePagamento{
     
-    void calcularValor(IngressoDTO ingresso);
+    CompraDTO calcularValor(CompraDTO ingresso);
     
     float getTaxa();
     

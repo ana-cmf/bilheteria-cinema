@@ -1,10 +1,14 @@
 package model;
 
-import dto.ClienteDTO;
+import model.execption.CpfInvalidoException;
+import model.execption.CpfInvalidoExexption;
+import model.execption.EmailInvalidoException;
+import model.execption.EmailInvalidoExecption;
+import model.execption.SenhaInvalidaException;
 
 public class Funcionario {
     private String nomeCompleto;
-    private int CPF;
+    private String CPF;
     private String senha;
     private String email;
     
@@ -14,45 +18,34 @@ public class Funcionario {
     public void setNomeCompleto(String nomeCompleto) {
         this.nomeCompleto = nomeCompleto;
     }
-    public int getCPF() {
+    public String getCPF() {
         return CPF;
     }
-    public void setCPF(int cPF) {
-        CPF = cPF;
+    public void setCPF(String cpf) throws CpfInvalidoException {
+       ValidacaoCPF num= new ValidacaoCPF();
+       if (num.CPFIsValido(cpf)){
+            this.CPF = cpf;
+       }else{
+         throw  new CpfInvalidoException();
+
+       }
     }
     public String getSenha() {
         return senha;
     }
-    public void setSenha(String senha) {
+    public void setSenha(String senha) throws SenhaInvalidaException{
+        if(senha.length()<6){
+            throw new SenhaInvalidaException();
+        }
         this.senha = senha;
     }
     public String getEmail() {
         return email;
     }
-    public void setEmail(String email) {
+    public void setEmail(String email) throws EmailInvalidoException{
+        if(!(email.contains("@")) || !(email.contains("."))){
+            throw new EmailInvalidoException();
+        }
         this.email = email;
-    }
-
-    public ClienteDTO Cadastrarcliente (String nomeCompleto, int CPF, String email) {
-        ClienteDTO cliente = new ClienteDTO();
-        cliente.setNomeCompleto(nomeCompleto);
-        cliente.setCPF(CPF);
-        cliente.setEmail(email);
-        return cliente;
-    }
-    public void VerPerfil(String nomeCompleto, int CPF, String email) {
-
-}
-    public void AutenticarFuncionario(String email, String senha){
-
-    }
-    public void AlterarInformacoesCliente(){
-
-    }
-    public void FinalizarCompra(){
-
-    }
-    public void CancelarCompra(){
-        
     }
 }

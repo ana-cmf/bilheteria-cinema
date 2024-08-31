@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import dao.execao.FilmeNaoEncontradoException;
 import java.sql.ResultSet;
 import dto.FilmeDTO;
 
@@ -24,7 +25,7 @@ public class FilmeDAOImpl implements FilmeDAO {
         }
     }
 
-    public FilmeDTO buscarFilme(FilmeDTO buscarFilme) {
+    public FilmeDTO buscarFilme(FilmeDTO buscarFilme) throws FilmeNaoEncontradoException {
         String sql = "SELECT * FROM bilheteria.filme WHERE id_filme = ?";
         FilmeDTO filme = null;
 

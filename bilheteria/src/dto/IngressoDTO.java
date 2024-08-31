@@ -5,12 +5,9 @@ public class IngressoDTO {
     private AssentoDTO assento;
     private ClienteDTO cliente;
     private float preco;
-    private FormaDePagamentoDTO formaDePagamento;
     private TipoDeEntradaDTO tipoDeEntrada;
     private boolean pagamentoRealizado;
 
-    
-    
     public IngressoDTO(TipoDeEntradaDTO tipoDeEntrada) {
         this.tipoDeEntrada = tipoDeEntrada;
     }
