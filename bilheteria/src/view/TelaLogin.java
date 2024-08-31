@@ -4,28 +4,25 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JButton;
 
 import dto.AdministradorDTO;
+import dto.FuncionarioDTO;
 
-public class TelaCadastroAdministrador extends JFrame implements ActionListener{
+public class TelaLogin extends JFrame{
 
-    private AdministradorDTO admin;
     private JLabel imagemLogo;
     private JPanel quadradoVermelho;
     private JTextField campoNome;
     private JPasswordField campoSenha;
-    private JButton botaoCadastrar;
-    
-    public TelaCadastroAdministrador(){
+    private JButton botaoEntrar;
+
+    public TelaLogin(){
         setIconImage(Imagens.ICONE_TOPO_DA_JANELA);
         setTitle("Absolute Cinema");
         setLayout(null);
@@ -36,7 +33,7 @@ public class TelaCadastroAdministrador extends JFrame implements ActionListener{
         adicionarFormulario();
         setVisible(true);
     }
-    
+
     public void adicionarImagemLogo() {
     	this.imagemLogo = new JLabel(Imagens.IMAGEM_GRANDE_LOGO);
     	imagemLogo.setBounds(10, 40, 750, 750);
@@ -60,13 +57,13 @@ public class TelaCadastroAdministrador extends JFrame implements ActionListener{
         altura = (int) (tamanhoDaTela().getHeight()*0.6);
         quadradoVermelho.setBounds(margemEsquerda, margemSuperior, largura, altura);
 
-        JLabel tituloCadastro = new JLabel("Cadastro do administrador");
-        tituloCadastro.setFont(new Font("Futura", Font.BOLD, 20));
-        tituloCadastro.setForeground(Color.WHITE);
-        tituloCadastro.setBounds(160, 30, largura, 50);
-        quadradoVermelho.add(tituloCadastro);
+        JLabel tituloLogin = new JLabel("Login");
+        tituloLogin.setFont(new Font("Futura", Font.BOLD, 20));
+        tituloLogin.setForeground(Color.WHITE);
+        tituloLogin.setBounds(260, 30, largura, 50);
+        quadradoVermelho.add(tituloLogin);
         
-        JLabel nome = new JLabel("Nome de usuário:");
+        JLabel nome = new JLabel("Nome de usuário ou email:");
         nome.setFont(new Font("Futura", Font.BOLD, 14));
         nome.setForeground(Color.WHITE);
         nome.setBounds(largura/4, altura/3, largura/2, 20);
@@ -86,11 +83,10 @@ public class TelaCadastroAdministrador extends JFrame implements ActionListener{
         campoSenha.setBounds(largura/4, senha.getY()+40, largura/2, 20);
         quadradoVermelho.add(campoSenha);
 
-        this.botaoCadastrar = new JButton("Cadastrar");
-        botaoCadastrar.setBackground(Color.LIGHT_GRAY);
-        botaoCadastrar.setBounds(largura/3, (int) (altura*0.75), largura/3, 60);
-        botaoCadastrar.addActionListener(this);
-        quadradoVermelho.add(botaoCadastrar);
+        this.botaoEntrar = new JButton("Entrar");
+        botaoEntrar.setBackground(Color.LIGHT_GRAY);
+        botaoEntrar.setBounds(largura/3, (int) (altura*0.75), largura/3, 60);
+        quadradoVermelho.add(botaoEntrar);
 
         quadradoVermelho.setVisible(true);
         add(quadradoVermelho);
@@ -106,28 +102,22 @@ public class TelaCadastroAdministrador extends JFrame implements ActionListener{
 		Toolkit t = Toolkit.getDefaultToolkit();
         return t.getScreenSize();
 	}
-  
+
     public AdministradorDTO salvarDadosParaAdministrador(){
         AdministradorDTO dto = new AdministradorDTO();
         dto.setNomeUsuario(campoNome.getText());
         dto.setSenha(new String(campoSenha.getPassword()));
         return dto;
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == botaoCadastrar){
-            mudarParaTelaDeLogin();
-        }
-    }
     
-    public void mudarParaTelaDeLogin(){
-        new TelaLogin();
-        dispose();
+    public FuncionarioDTO salvarDadosParaFuncionario(){
+        FuncionarioDTO dto = new FuncionarioDTO();
+        dto.setEmail(campoNome.getText());
+        dto.setSenha(new String(campoSenha.getPassword()));
+        return dto;
     }
-
     public static void main(String[] args) {
-        new TelaCadastroAdministrador();
+        new TelaLogin();
     }
 
 }
