@@ -6,25 +6,21 @@ import java.sql.SQLException;
 public class TestaConexaoBancoDeDados {
 
     public static void main(String[] args) {
-        Connection conn = null;
+        Connection conexao = null;
+
         try {
-            conn = ConexaoBancoDeDados.conectar();
-            if (conn != null) {
-                System.out.println("Conexao bem-sucedida!");
-            } else {
-                System.out.println("Falha na conexao.");
-            }
+            conexao = ConexaoBancoDeDados.conectar();
+            System.out.println("Conexão estabelecida com sucesso!");
+
         } catch (SQLException e) {
             System.err.println("Erro ao conectar ao banco de dados: " + e.getMessage());
-        } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    System.err.println("Erro ao fechar a conexao: " + e.getMessage());
-                }
+        } /* finally {
+            try {
+                ConexaoBancoDeDados.fecharConexao(conexao);
+                System.out.println("Conexão fechada com sucesso!");
+            } catch (SQLException e) {
+                System.err.println("Erro ao fechar a conexão: " + e.getMessage());
             }
-        }
+        }  */  
     }
 }
-
