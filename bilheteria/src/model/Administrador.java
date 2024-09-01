@@ -7,7 +7,6 @@ public class Administrador {
     private String nomeUsuario;
     private String senha;
 
-
     public static Administrador getInstancia(){
       if(instancia ==null){
         instancia = new Administrador();
