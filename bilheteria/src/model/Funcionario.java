@@ -1,10 +1,8 @@
 package model;
 
-import model.execption.CpfInvalidoException;
-import model.execption.CpfInvalidoExexption;
-import model.execption.EmailInvalidoException;
-import model.execption.EmailInvalidoExecption;
-import model.execption.SenhaInvalidaException;
+import execption.EmailInvalidoException;
+import execption.CpfInvalidoException;
+import execption.SenhaInvalidaException;
 
 public class Funcionario {
     private String nomeCompleto;

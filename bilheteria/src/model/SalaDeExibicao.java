@@ -5,6 +5,7 @@ public class SalaDeExibicao {
     private ModeloDeExibicao modeloDeExibicao;
     private int quantidadeDeAssentos;
     private Assento[] assentos = new Assento[40];
+    
 
     public SalaDeExibicao( ){
         this.assentos = new Assento[40];
@@ -13,7 +14,7 @@ public class SalaDeExibicao {
 
     }
 
-    public void  criarAssento(){
+    private void  criarAssento(){
         for (int i=0; i<assentos.length; i++) {
             assentos[i]=new Assento(i);
             assentos[i].setPosicao(i+1);
