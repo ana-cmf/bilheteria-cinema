@@ -1,6 +1,6 @@
 package model;
 
-import model.execption.AssentoJaReservadoException;
+import execption.AssentoJaReservadoException;
 
 public class Assento {
     private int posicao;

@@ -1,6 +1,6 @@
 package model;
 
-import model.execption.SenhaInvalidaException;
+import execption.SenhaInvalidaException;
 
 public class Administrador {
     private static Administrador instancia;

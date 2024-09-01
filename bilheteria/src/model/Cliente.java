@@ -1,11 +1,8 @@
 package model;
 
 import dto.FilmeDTO;
-import model.execption.CpfInvalidoException;
-import model.execption.CpfInvalidoExexption;
-import model.execption.EmailInvalidoException;
-import model.execption.EmailInvalidoExecption;
-
+import execption.CpfInvalidoException;
+import execption.EmailInvalidoException;
 public class Cliente{
     private String nomeCompleto;
     private String CPF;
