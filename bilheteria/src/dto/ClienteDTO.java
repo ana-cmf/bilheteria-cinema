@@ -3,7 +3,7 @@ package dto;
 public class ClienteDTO {
 
     private String nomeCompleto;
-    private int CPF;
+    private String CPF;
     private String email;
 
     public String getNomeCompleto() {
@@ -12,11 +12,11 @@ public class ClienteDTO {
     public void setNomeCompleto(String nomeCompleto) {
         this.nomeCompleto = nomeCompleto;
     }
-    public int getCPF() {
+    public String getCPF() {
         return CPF;
     }
-    public void setCPF(int cPF) {
-        CPF = cPF;
+    public void setCPF(String cpf) {
+        CPF = cpf;
     }
     public String getEmail() {
         return email;

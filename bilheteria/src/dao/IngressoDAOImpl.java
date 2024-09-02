@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import dto.IngressoDTO;
 
-public class IngressoImpl implements IngressoDAO {
+public class IngressoDAOImpl implements IngressoDAO {
 
     @Override
     public void adicionarIngresso(IngressoDTO ingresso) {

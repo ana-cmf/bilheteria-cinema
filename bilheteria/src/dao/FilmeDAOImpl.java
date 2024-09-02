@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import dao.execao.FilmeNaoEncontradoException;
 import java.sql.ResultSet;
 import dto.FilmeDTO;
@@ -62,5 +64,24 @@ public class FilmeDAOImpl implements FilmeDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<FilmeDTO> listarTodosFilmes() throws SQLException {
+        String sql = "SELECT * FROM bilheteria.filme";
+        List<FilmeDTO> filmes = new ArrayList<>();
+
+        try (Connection conn = ConexaoBancoDeDados.conectar();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                FilmeDTO filme = new FilmeDTO(null);
+                filme.setId(rs.getLong("id_filme"));
+                filme.setTitulo(rs.getString("titulo_filme"));
+                filmes.add(filme);
+            }
+        }
+        return filmes;
     }
 }
