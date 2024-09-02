@@ -11,9 +11,13 @@ public class Filme {
     private int duracaoDoFilme;
     private int classificacaoIndicativa;
 
+<<<<<<< HEAD
 
     
     public Filme() {
+=======
+    public Filme(Long id) {
+>>>>>>> Yasmin
 	    this.id = System.currentTimeMillis();
     }
     public Long getId() {

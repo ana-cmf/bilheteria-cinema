@@ -3,14 +3,28 @@ package model;
 import model.execption.AssentoJaReservadoException;
 
 public class Assento {
+    private Long id;
     private int posicao;
     private boolean reservado;
+<<<<<<< HEAD
     
     public Assento(){
         this.posicao = posicao;
         this.reservado = false;
     }
    
+=======
+
+    public Assento(Long id) {
+	    this.id = System.currentTimeMillis();
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+>>>>>>> Yasmin
     public int getPosicao() {
         return posicao;
     }

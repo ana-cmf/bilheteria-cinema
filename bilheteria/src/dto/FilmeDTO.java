@@ -3,6 +3,7 @@ package dto;
 public class FilmeDTO {
     private Long id;
     private String titulo;
+    private String sinopse;
     private String genero;
     private int duracaoDoFilme;
     private int classificacaoIndicativa;
@@ -23,6 +24,12 @@ public class FilmeDTO {
     }
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+    public String getSinopse() {
+        return sinopse;
+    }
+    public void setSinopse(String sinopse) {
+        this.sinopse = sinopse;
     }
     public String getGenero() {
         return genero;
