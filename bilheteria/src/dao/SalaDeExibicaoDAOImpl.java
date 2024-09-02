@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import dao.execao.SalaDeExibicaoNaoEncontradaException;
+
+import dao.exception.SalaDeExibicaoNaoEncontradaException;
 import dto.SalaDeExibicaoDTO;
 
 public class SalaDeExibicaoDAOImpl implements SalaDeExibicaoDAO {

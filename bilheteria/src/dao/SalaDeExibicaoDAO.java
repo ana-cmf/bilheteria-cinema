@@ -2,7 +2,8 @@ package dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import dao.execao.SalaDeExibicaoNaoEncontradaException;
+
+import dao.exception.SalaDeExibicaoNaoEncontradaException;
 import dto.SalaDeExibicaoDTO;
 
 public interface SalaDeExibicaoDAO {

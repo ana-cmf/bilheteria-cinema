@@ -3,15 +3,27 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+import java.sql.Statement;
 import dto.IngressoDTO;
 
 public class IngressoDAOImpl implements IngressoDAO {
 
     @Override
     public void adicionarIngresso(IngressoDTO ingresso) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adicionarIngresso'");
+        String sql = "INSERT INTO bilheteria.filme (id_ingresso, preco_ingresso, pagamento_realizado_ingresso, id_tipo_entrada, id_exibicao, id_assento) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = ConexaoBancoDeDados.conectar();
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setLong(1, ingresso.getId());
+            pstmt.setFloat(2, ingresso.getPreco());
+            pstmt.setBoolean(3, ingresso.isPagamentoRealizado());
+            // id_tipo_entrada
+            pstmt.setLong(4, ingresso.getExibicao().getId());
+            pstmt.setLong(5, ingresso.getAssento().getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

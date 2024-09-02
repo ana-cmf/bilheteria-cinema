@@ -1,6 +1,7 @@
 package dto;
 
 public class IngressoDTO {
+    private Long id;
     private ExibicaoDTO exibicao;
     private AssentoDTO assento;
     private ClienteDTO cliente;
@@ -9,6 +10,12 @@ public class IngressoDTO {
     private TipoDeEntradaDTO tipoDeEntrada;
     private boolean pagamentoRealizado;
 
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
     public IngressoDTO(TipoDeEntradaDTO tipoDeEntrada) {
         this.tipoDeEntrada = tipoDeEntrada;
     }

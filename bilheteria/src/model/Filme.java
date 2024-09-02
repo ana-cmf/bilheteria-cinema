@@ -6,8 +6,6 @@ public class Filme {
     private int duracaoDoFilme;
     private int classificacaoIndicativa;
 
-
-    
     public Filme(Long id) {
 	    this.id = System.currentTimeMillis();
     }

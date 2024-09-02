@@ -22,7 +22,6 @@ public class AssentoDAOImpl implements AssentoDAO {
             pstmt.setBoolean(3, assento.isReservado());
     
             pstmt.executeUpdate();
-            System.out.println("Assento adicionado com sucesso!");
     
         } catch (SQLException e) {
             e.printStackTrace();

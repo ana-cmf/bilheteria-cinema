@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.exception.FuncionarioNaoEncontradoPeloEmailException;
 import dto.FuncionarioDTO;
 
 public class FuncionarioDAOImpl implements FucionarioDAO {
@@ -73,10 +74,32 @@ public class FuncionarioDAOImpl implements FucionarioDAO {
                 funcionario.setNomeCompleto(rs.getString("nome_completo_funcionario"));
                 funcionario.setEmail(rs.getString("email_funcionario"));
                 funcionario.setSenha(rs.getString("senha_funcionario"));
-                // Povoar os outros campos, como email, senha, etc.
                 funcionarios.add(funcionario);
             }
         }
         return funcionarios;
+    }
+
+    @Override
+    public FuncionarioDTO buscarFuncionarioPeloEmail(FuncionarioDTO funcionario) throws FuncionarioNaoEncontradoPeloEmailException {
+        String sql = "SELECT * FROM bilheteria.funcionario WHERE email_funcionario = ?";
+        FuncionarioDTO funcionarioDTO = null;
+
+        try (Connection conn = ConexaoBancoDeDados.conectar();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, funcionario.getEmail());
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                funcionarioDTO = new FuncionarioDTO();
+                funcionarioDTO.setEmail("email_funcionario");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return funcionarioDTO;
     }
 }

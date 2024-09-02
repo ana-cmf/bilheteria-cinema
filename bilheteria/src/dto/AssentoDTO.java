@@ -1,9 +1,16 @@
 package dto;
 public class AssentoDTO {
+    private Long id; 
     private SalaDeExibicaoDTO salaDeExibicao;
     private int posicao;
     private boolean reservado;
-
+    
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
     public SalaDeExibicaoDTO getSalaDeExibicao() {
         return salaDeExibicao;
     }
