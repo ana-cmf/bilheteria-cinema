@@ -1,7 +1,7 @@
 package model;
 
-import execption.CpfInvalidoException;
-import execption.EmailInvalidoException;
+import model.execption.CpfInvalidoException;
+import model.execption.EmailInvalidoException;
 public class Cliente{
     private String nomeCompleto;
     private String CPF;

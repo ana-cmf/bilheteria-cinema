@@ -1,7 +1,8 @@
 package model;
 
+import dto.FilmeDTO;
 import dto.IngressoDTO;
-import execption.ClassificacaoNaoIndicadaException;
+import model.execption.ClassificacaoNaoIndicadaException;
 
 
 public class Filme {
@@ -13,7 +14,7 @@ public class Filme {
 
 
     
-    public Filme(Long id) {
+    public Filme() {
 	    this.id = System.currentTimeMillis();
     }
     public Long getId() {

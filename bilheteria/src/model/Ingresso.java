@@ -1,6 +1,6 @@
 package model;
 
-import execption.SecaoExibidaException;
+import model.execption.SecaoExibidaException;
 
 public class Ingresso{
 
