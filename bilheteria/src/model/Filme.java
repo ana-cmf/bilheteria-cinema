@@ -1,6 +1,5 @@
 package model;
 
-import dto.FilmeDTO;
 import dto.IngressoDTO;
 import model.execption.ClassificacaoNaoIndicadaException;
 

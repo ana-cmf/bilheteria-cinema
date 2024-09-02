@@ -1,5 +1,7 @@
 package model;
 
+import dto.ModeloDeExibicaoDTO;
+
 public class SalaDeExibicao {
     private int numeroDaSala;
     private ModeloDeExibicao modeloDeExibicao;
@@ -44,6 +46,12 @@ public class SalaDeExibicao {
     }
     public void setAssentos(Assento[] assentos) {
         this.assentos = assentos;
+    }
+    public boolean isExibicao3D(ModeloDeExibicaoDTO dto){
+        if (dto != null && modeloDeExibicao.equals(dto.getModeloDeExibicao())) {
+            return dto.getModeloDeExibicao() == ModeloDeExibicaoDTO._3D;
+        }
+        return false;
     }
     
 }
