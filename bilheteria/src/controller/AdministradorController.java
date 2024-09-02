@@ -1,21 +1,20 @@
 package controller;
 
-import copiamodel.AdministradoCopia;
-import copiamodel.SenhaInvalidaException;
 import dao.AdministradorDAO;
 import dao.AdministradorDAOImpl;
 import dto.AdministradorDTO;
+import execption.SenhaInvalidaException;
+import model.Administrador;
 import view.TelaCadastroAdministrador;
 import view.TelaLogin;
 
 public class AdministradorController {
-
     private AdministradorDAO adminDAO;
-    private AdministradoCopia admin;
+    private Administrador admin;
     private TelaCadastroAdministrador telaCadastro;
 
     public AdministradorController(){
-        this.admin = AdministradoCopia.getInstancia();
+        this.admin = Administrador.getInstancia();
         this.adminDAO = new AdministradorDAOImpl(); 
         iniciarPrograma();
     }
@@ -44,5 +43,4 @@ public class AdministradorController {
             
         }
     }
-
 }
