@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDateTime;
 
-import model.execption.AssentoJaReservadoException;
+import execption.AssentoJaReservadoException;
 
 public class Exibicao {
     private Long id;
