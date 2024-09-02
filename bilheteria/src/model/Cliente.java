@@ -1,6 +1,5 @@
 package model;
 
-import dto.FilmeDTO;
 import execption.CpfInvalidoException;
 import execption.EmailInvalidoException;
 public class Cliente{

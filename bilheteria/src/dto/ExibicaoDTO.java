@@ -3,10 +3,12 @@ package dto;
 import java.time.LocalDateTime;
 
 public class ExibicaoDTO {
+    private Long id;
     private FilmeDTO filme;
     private SalaDeExibicaoDTO salaDeExibicao;
     private boolean legendado;
-    private LocalDateTime horario;    
+    private LocalDateTime horario; 
+       
     
     public FilmeDTO getFilme() {
         return filme;
@@ -31,5 +33,11 @@ public class ExibicaoDTO {
     }
     public void setHorario(LocalDateTime horario) {
         this.horario = horario;
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 } 

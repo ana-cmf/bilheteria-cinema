@@ -1,5 +1,7 @@
 package model;
 
+import execption.SecaoExibidaException;
+
 public class Ingresso{
 
     private Exibicao exibicao;
@@ -46,6 +48,12 @@ public class Ingresso{
     public void setPagamentoRealizado(boolean pagamentoRealizado) {
         this.pagamentoRealizado = pagamentoRealizado;
     }
+    public boolean podeComprarIngresso(Ingresso ingresso) throws SecaoExibidaException {
+        if(ingresso.getExibicao().isSecaoJaExibida()){
+            throw new SecaoExibidaException();
+        }
+        return true;
+     }
 }
 
     

@@ -6,7 +6,7 @@ public class Assento {
     private int posicao;
     private boolean reservado;
     
-    public Assento(int posicao){
+    public Assento(){
         this.posicao = posicao;
         this.reservado = false;
     }
@@ -14,7 +14,7 @@ public class Assento {
     public int getPosicao() {
         return posicao;
     }
-    public void setPosicao(int posicao) {
+    public void  setPosicao(int posicao) {
         this.posicao = posicao;
     }
     public boolean isReservado() {
@@ -28,5 +28,12 @@ public class Assento {
             throw new AssentoJaReservadoException();
         }
         reservado = true;
+    }
+    public void reservarAssento(Assento numeroAssento) throws AssentoJaReservadoException {
+        if(numeroAssento.isReservado() == true){
+            throw new AssentoJaReservadoException();
+        }else{
+            numeroAssento.reservar();
+        }
     }
 }
