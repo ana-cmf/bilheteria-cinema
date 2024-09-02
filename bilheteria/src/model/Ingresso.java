@@ -3,13 +3,25 @@ package model;
 import model.execption.SecaoExibidaException;
 
 public class Ingresso{
-
+    private Long id;
     private Exibicao exibicao;
     private Assento assento;
     private Cliente cliente;
     private float preco;
     private TipoDeEntrada tipoDeEntrada;
     private boolean pagamentoRealizado;
+
+    public Ingresso(Long id) {
+	    this.id = System.currentTimeMillis();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     
     public Exibicao getExibicao() {
         return exibicao;

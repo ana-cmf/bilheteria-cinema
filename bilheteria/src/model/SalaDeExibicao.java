@@ -16,7 +16,7 @@ public class SalaDeExibicao {
 
     private void  criarAssento(){
         for (int i=0; i<assentos.length; i++) {
-            assentos[i]=new Assento();
+            assentos[i]=new Assento(null);
             assentos[i].setPosicao(i+1);
         }
     }
