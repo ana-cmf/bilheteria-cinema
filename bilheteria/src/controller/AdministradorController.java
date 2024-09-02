@@ -39,4 +39,10 @@ public class AdministradorController {
         }
     }
 
+    public void autenticarAdministrador(AdministradorDTO dto){
+        if(adminDAO.autenticarAdministrador(dto)){
+            
+        }
+    }
+
 }

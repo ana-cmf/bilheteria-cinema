@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,15 +19,21 @@ import javax.swing.JTextField;
 import dto.AdministradorDTO;
 import dto.FuncionarioDTO;
 
-public class TelaLogin extends JFrame{
+public class TelaLogin extends JFrame implements KeyListener, ActionListener{
 
     private JLabel imagemLogo;
     private JPanel quadradoVermelho;
     private JTextField campoNome;
     private JPasswordField campoSenha;
+    private JLabel mensagemErroNome;
+    private JLabel mensagemErroSenha;
     private JButton botaoEntrar;
-
+    
     public TelaLogin(){
+        criarTela();
+    }
+    
+    public void criarTela(){
         setIconImage(Imagens.ICONE_TOPO_DA_JANELA);
         setTitle("Absolute Cinema");
         setLayout(null);
@@ -56,7 +67,7 @@ public class TelaLogin extends JFrame{
         largura = (int) (margemEsquerda*0.75);
         altura = (int) (tamanhoDaTela().getHeight()*0.6);
         quadradoVermelho.setBounds(margemEsquerda, margemSuperior, largura, altura);
-
+        
         JLabel tituloLogin = new JLabel("Login");
         tituloLogin.setFont(new Font("Futura", Font.BOLD, 20));
         tituloLogin.setForeground(Color.WHITE);
@@ -71,7 +82,16 @@ public class TelaLogin extends JFrame{
 
         this.campoNome = new JTextField();
         campoNome.setBounds(largura/4, nome.getY()+40, largura/2, 20);
+        campoNome.addKeyListener(this);
         quadradoVermelho.add(campoNome);
+
+        Font fonteErro = new Font("Futura", Font.ITALIC, 12);
+        this.mensagemErroNome = new JLabel();
+        mensagemErroNome.setFont(fonteErro);
+        mensagemErroNome.setForeground(Color.YELLOW);
+        mensagemErroNome.setBounds(largura/4, campoNome.getY()+campoNome.getHeight(), campoNome.getWidth(), 12);
+        mensagemErroNome.setVisible(false);
+        quadradoVermelho.add(mensagemErroNome);
         
         JLabel senha = new JLabel("Senha:");
         senha.setFont(new Font("Futura", Font.BOLD, 14));
@@ -81,28 +101,52 @@ public class TelaLogin extends JFrame{
         
         this.campoSenha = new JPasswordField();
         campoSenha.setBounds(largura/4, senha.getY()+40, largura/2, 20);
+        campoSenha.addKeyListener(this);
         quadradoVermelho.add(campoSenha);
 
+        this.mensagemErroSenha = new JLabel("Senha inválida!");
+        mensagemErroSenha.setFont(fonteErro);
+        mensagemErroSenha.setForeground(Color.YELLOW);
+        mensagemErroSenha.setBounds(largura/4, campoSenha.getY()+campoSenha.getHeight(), campoSenha.getWidth(), 12);
+        mensagemErroSenha.setVisible(false);
+        quadradoVermelho.add(mensagemErroSenha);
+        
         this.botaoEntrar = new JButton("Entrar");
         botaoEntrar.setBackground(Color.LIGHT_GRAY);
+        botaoEntrar.setEnabled(false);
         botaoEntrar.setBounds(largura/3, (int) (altura*0.75), largura/3, 60);
         quadradoVermelho.add(botaoEntrar);
-
+        
         quadradoVermelho.setVisible(true);
         add(quadradoVermelho);
     }
 
     public Color adicionarCor(int num1, int num2, int num3) {
-		float[] cor = new float[3];
+        float[] cor = new float[3];
 		cor = Color.RGBtoHSB(num1, num2, num3, cor);
 		return Color.getHSBColor(cor[0], cor[1], cor[2]);
 	}
-
+    
     public Dimension tamanhoDaTela() {
-		Toolkit t = Toolkit.getDefaultToolkit();
+        Toolkit t = Toolkit.getDefaultToolkit();
         return t.getScreenSize();
 	}
 
+    public void mostrarMensagensDeErroDoNome(){
+        if(campoNome.getText().isBlank()){
+            mensagemErroNome.setText("");
+            mensagemErroNome.setVisible(true);
+        }
+    }
+
+    public void habilitarBotao(){
+        if(!campoNome.getText().isBlank() && campoSenha.getPassword().length >= 6){
+            botaoEntrar.setEnabled(true);
+        }else{
+            botaoEntrar.setEnabled(false);
+        }
+    }
+    
     public AdministradorDTO salvarDadosParaAdministrador(){
         AdministradorDTO dto = new AdministradorDTO();
         dto.setNomeUsuario(campoNome.getText());
@@ -118,6 +162,27 @@ public class TelaLogin extends JFrame{
     }
     public static void main(String[] args) {
         new TelaLogin();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        habilitarBotao();
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == botaoEntrar){
+            salvarDadosParaAdministrador();
+            salvarDadosParaFuncionario();
+        }
     }
 
 }

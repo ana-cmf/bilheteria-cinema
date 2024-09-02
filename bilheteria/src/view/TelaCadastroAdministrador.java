@@ -6,10 +6,10 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,9 +17,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controller.AdministradorController;
-
-import javax.swing.JButton;
-
 import dto.AdministradorDTO;
 
 public class TelaCadastroAdministrador extends JFrame implements ActionListener, KeyListener{
@@ -164,8 +161,6 @@ public class TelaCadastroAdministrador extends JFrame implements ActionListener,
 
         if(e.getSource() == campoNome){
             mostrarMensagensDeErroDoNome();
-        } else if(e.getSource() == campoSenha){
-            mostrarMensagensDeErroDaSenha();
         }
         habilitarBotao();
        
@@ -177,10 +172,15 @@ public class TelaCadastroAdministrador extends JFrame implements ActionListener,
     }
     
     public void mostrarMensagensDeErroDaSenha(){
-        //mensagemErroNome.setVisible(true);
+        mensagemErroNome.setVisible(true);
     }
     
     public void habilitarBotao(){
+        if(!campoNome.getText().isBlank() && campoSenha.getPassword().length >= 6){
+            botaoCadastrar.setEnabled(true);
+        }else{
+            botaoCadastrar.setEnabled(false);
+        }
     }
     
     @Override
@@ -189,11 +189,7 @@ public class TelaCadastroAdministrador extends JFrame implements ActionListener,
     
     @Override
     public void keyReleased(KeyEvent e) {
-        if(!campoNome.getText().isBlank() && campoSenha.getPassword().length >= 6){
-            botaoCadastrar.setEnabled(true);
-        }else{
-            botaoCadastrar.setEnabled(false);
-        }
+        habilitarBotao();
     }
     
     public void mudarParaTelaDeLogin(){
