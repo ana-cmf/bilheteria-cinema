@@ -4,7 +4,7 @@ import model.Administrador;
 import dao.AdministradorDAO;
 import dao.AdministradorDAOImpl;
 import dao.FucionarioDAO;
-import dao.FuncionarioImpl;
+import dao.FuncionarioDAOImpl;
 import dto.AdministradorDTO;
 import dto.FuncionarioDTO;
 import model.Funcionario;
@@ -23,7 +23,7 @@ public class LoginController {
     public LoginController(){
         this.admin = Administrador.getInstancia();
         this.adminDAO = new AdministradorDAOImpl();
-        this.funcionarioDAO = new FuncionarioImpl();
+        this.funcionarioDAO = new FuncionarioDAOImpl();
         this.funcionario = new Funcionario();
     }
 
@@ -35,5 +35,4 @@ public class LoginController {
             telaFuncionario.setFuncionario(funcionarioDTO);
         }
     }
-
 }

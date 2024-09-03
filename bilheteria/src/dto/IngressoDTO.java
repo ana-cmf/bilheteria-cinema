@@ -7,6 +7,7 @@ public class IngressoDTO {
     private ClienteDTO cliente;
     private float preco;
     private TipoDeEntradaDTO tipoDeEntrada;
+    private FormaDePagamentoDTO formaDePagamento;
     private boolean pagamentoRealizado;
 
     public Long getId() {

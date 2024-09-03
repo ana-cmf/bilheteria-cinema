@@ -22,8 +22,4 @@ public class ModeloDeExibicaoDTO {
     public void setModelo3D(ModeloDeExibicaoDTO modelo3d) {
         modelo3D = modelo3d;
     }
-     
-
-   
-
 }
