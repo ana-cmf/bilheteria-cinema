@@ -44,5 +44,4 @@ public class ClienteController{
         dto.setCPF(cliente.getCPF());
         clientedao.excluirCliente(dto);
     }
-    
 }
