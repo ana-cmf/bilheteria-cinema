@@ -31,7 +31,8 @@ public class LoginController {
         if(adminDAO.autenticarAdministrador(adminDTO)){
             new TelaInicialAdministrador();
         }else{
-            new TelaInicialFuncionario();
+            TelaInicialFuncionario telaFuncionario = new TelaInicialFuncionario();
+            telaFuncionario.setFuncionario(funcionarioDTO);
         }
     }
 
