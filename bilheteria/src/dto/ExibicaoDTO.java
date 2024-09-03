@@ -34,17 +34,11 @@ public class ExibicaoDTO {
     public void setHorario(LocalDateTime horario) {
         this.horario = horario;
     }
-<<<<<<< HEAD
-    public Long getId() {
-        return id;
-    }
-=======
 
     public Long getId() {
         return id;
     }
 
->>>>>>> Yasmin
     public void setId(Long id) {
         this.id = id;
     }

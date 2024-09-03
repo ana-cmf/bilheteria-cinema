@@ -75,7 +75,6 @@ public class ExibicaoController {
         Assento assento = new Assento();
         assento.setPosicao(dto.getPosicao());
         assento.setReservado(dto.isReservado());
-        return assento;
-        
+        return assento;  
     }
 }
