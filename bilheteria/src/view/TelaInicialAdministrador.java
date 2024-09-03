@@ -35,7 +35,7 @@ public class TelaInicialAdministrador extends JFrame{
     private JPanel listaDosFilmes;
     private JPanel listaDosFuncionarios;
     private JPanel listaDosClientes;
-
+    
     public TelaInicialAdministrador(){
         adicionarMenu();
         adicionarBotaoLogin();
@@ -153,7 +153,7 @@ public class TelaInicialAdministrador extends JFrame{
         tituloSalas.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         tituloSalas.setHorizontalAlignment(SwingConstants.CENTER);
         tituloSalas.setVisible(true);
-
+        
         this.listaDasSalas = new JPanel();
         listaDasSalas.setBounds(margemEsquerdaBotoes,200,larguraListaBotoes,alturaListaBotoes+100);
         listaDasSalas.setVisible(true);
@@ -250,7 +250,7 @@ public class TelaInicialAdministrador extends JFrame{
         tituloFilmes.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         tituloFilmes.setHorizontalAlignment(SwingConstants.CENTER);
         tituloFilmes.setVisible(true);
-
+        
         this.listaDasSalas = new JPanel();
         listaDasSalas.setBounds(margemEsquerdaBotoes,200,larguraListaBotoes,alturaListaBotoes+100);
         listaDasSalas.setVisible(true);
@@ -316,8 +316,152 @@ public class TelaInicialAdministrador extends JFrame{
         Toolkit t = Toolkit.getDefaultToolkit();
         return t.getScreenSize();
 	}
-
+    
     public static void main(String[] args) {
         new TelaInicialAdministrador();
     }
+    
+        public JButton getBotaoLogin() {
+            return botaoLogin;
+        }
+    
+        public void setBotaoLogin(JButton botaoLogin) {
+            this.botaoLogin = botaoLogin;
+        }
+    
+        public JMenuItem getMenuSalas() {
+            return menuSalas;
+        }
+    
+        public void setMenuSalas(JMenuItem menuSalas) {
+            this.menuSalas = menuSalas;
+        }
+    
+        public JMenuItem getMenuExibicoes() {
+            return menuExibicoes;
+        }
+    
+        public void setMenuExibicoes(JMenuItem menuExibicoes) {
+            this.menuExibicoes = menuExibicoes;
+        }
+    
+        public JMenuItem getMenuFilmes() {
+            return menuFilmes;
+        }
+    
+        public void setMenuFilmes(JMenuItem menuFilmes) {
+            this.menuFilmes = menuFilmes;
+        }
+    
+        public JMenuItem getMenuFuncionarios() {
+            return menuFuncionarios;
+        }
+    
+        public void setMenuFuncionarios(JMenuItem menuFuncionarios) {
+            this.menuFuncionarios = menuFuncionarios;
+        }
+    
+        public JMenuItem getMenuClientes() {
+            return menuClientes;
+        }
+    
+        public void setMenuClientes(JMenuItem menuClientes) {
+            this.menuClientes = menuClientes;
+        }
+    
+        public JTextField getCaixaDePesquisa() {
+            return caixaDePesquisa;
+        }
+    
+        public void setCaixaDePesquisa(JTextField caixaDePesquisa) {
+            this.caixaDePesquisa = caixaDePesquisa;
+        }
+    
+        public SalaDeExibicaoDTO getSalaDTO() {
+            return salaDTO;
+        }
+    
+        public void setSalaDTO(SalaDeExibicaoDTO salaDTO) {
+            this.salaDTO = salaDTO;
+        }
+    
+        public FilmeDTO getFilmeDTO() {
+            return filmeDTO;
+        }
+    
+        public void setFilmeDTO(FilmeDTO filmeDTO) {
+            this.filmeDTO = filmeDTO;
+        }
+    
+        public FuncionarioDTO getFuncionarioDTO() {
+            return funcionarioDTO;
+        }
+    
+        public void setFuncionarioDTO(FuncionarioDTO funcionarioDTO) {
+            this.funcionarioDTO = funcionarioDTO;
+        }
+    
+        public ExibicaoDTO getExibicaoDTO() {
+            return exibicaoDTO;
+        }
+    
+        public void setExibicaoDTO(ExibicaoDTO exibicaoDTO) {
+            this.exibicaoDTO = exibicaoDTO;
+        }
+    
+        public List<SalaDeExibicaoDTO> getSalas() {
+            return salas;
+        }
+    
+        public void setSalas(List<SalaDeExibicaoDTO> salas) {
+            this.salas = salas;
+        }
+    
+        public List<FilmeDTO> getFilmes() {
+            return filmes;
+        }
+    
+        public void setFilmes(List<FilmeDTO> filmes) {
+            this.filmes = filmes;
+        }
+    
+        public JPanel getListaDasSalas() {
+            return listaDasSalas;
+        }
+    
+        public void setListaDasSalas(JPanel listaDasSalas) {
+            this.listaDasSalas = listaDasSalas;
+        }
+    
+        public JPanel getListaDasExibicoes() {
+            return listaDasExibicoes;
+        }
+    
+        public void setListaDasExibicoes(JPanel listaDasExibicoes) {
+            this.listaDasExibicoes = listaDasExibicoes;
+        }
+    
+        public JPanel getListaDosFilmes() {
+            return listaDosFilmes;
+        }
+    
+        public void setListaDosFilmes(JPanel listaDosFilmes) {
+            this.listaDosFilmes = listaDosFilmes;
+        }
+    
+        public JPanel getListaDosFuncionarios() {
+            return listaDosFuncionarios;
+        }
+    
+        public void setListaDosFuncionarios(JPanel listaDosFuncionarios) {
+            this.listaDosFuncionarios = listaDosFuncionarios;
+        }
+    
+        public JPanel getListaDosClientes() {
+            return listaDosClientes;
+        }
+    
+        public void setListaDosClientes(JPanel listaDosClientes) {
+            this.listaDosClientes = listaDosClientes;
+        }
 }
