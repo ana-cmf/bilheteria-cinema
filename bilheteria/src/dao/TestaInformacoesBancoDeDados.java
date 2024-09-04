@@ -1,16 +1,15 @@
 package dao;
 
-import dto.SalaDeExibicaoDTO;
+import dto.AdministradorDTO;
 
 public class TestaInformacoesBancoDeDados {
     public static void main(String[] args) {
-        SalaDeExibicaoDTO sala = new SalaDeExibicaoDTO();
-        sala.setNumeroDaSala(1); // Exemplo de número da sala
-        sala.setQuantidadeDeAssentos(50); // Exemplo de quantidade de assentos
 
-        SalaDeExibicaoDAO salaDAO = new SalaDeExibicaoDAOImpl();
-        salaDAO.cadastrarSalaExibicao(sala);
+        AdministradorDTO ad = new AdministradorDTO();
+        ad.setNomeUsuario("user");
+        ad.setSenha("123");
         
-        System.out.println("Sala de exibição e assentos cadastrados com sucesso.");
+        AdministradorDAOImpl dao = new AdministradorDAOImpl();
+        dao.excluirAdministrador(ad);
     }
 }
