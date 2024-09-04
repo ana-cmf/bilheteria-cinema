@@ -1,7 +1,10 @@
 package controller;
 
+import java.sql.SQLException;
+
 import dao.AdministradorDAO;
 import dao.AdministradorDAOImpl;
+import dao.ConexaoBancoDeDados;
 import dto.AdministradorDTO;
 import model.execption.SenhaInvalidaException;
 import model.Administrador;
@@ -21,6 +24,11 @@ public class AdministradorController {
     }
 
     public void iniciarPrograma(){
+        try {
+            ConexaoBancoDeDados.conectar();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         if(adminDAO.buscarAdminstrador()){
             new TelaLogin();
         }else{

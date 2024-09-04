@@ -1,5 +1,9 @@
 package view;
 
-public class Main {
+import controller.AdministradorController;
 
+public class Main {
+    public static void main(String[] args) {
+        new AdministradorController();
+    }
 }

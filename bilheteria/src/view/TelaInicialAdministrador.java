@@ -29,12 +29,16 @@ public class TelaInicialAdministrador extends JFrame{
 
     private List<SalaDeExibicaoDTO> salas;
     private List<FilmeDTO> filmes;
+    private List<FuncionarioDTO> funcionarios;
+    private List<ExibicaoDTO> exibicoes;
 
     private JPanel listaDasSalas;
     private JPanel listaDasExibicoes;
     private JPanel listaDosFilmes;
     private JPanel listaDosFuncionarios;
     private JPanel listaDosClientes;
+
+    private JPanel detalhesSala;
     
     public TelaInicialAdministrador(){
         adicionarMenu();
@@ -121,22 +125,22 @@ public class TelaInicialAdministrador extends JFrame{
             salas.add(dto);
         }
         
-        JPanel areaBotoesSalas = new JPanel();
-        int quantidadeDeBotoes = salas.size();
-        if(quantidadeDeBotoes<10){
-            quantidadeDeBotoes = 10;
+        JPanel conteiner = new JPanel();
+        int quantidadeDeItensDetalhados = salas.size();
+        if(quantidadeDeItensDetalhados<10){
+            quantidadeDeItensDetalhados = 10;
         }
-        areaBotoesSalas.setLayout(new GridLayout(quantidadeDeBotoes,1,5,5));
+        conteiner.setLayout(new GridLayout(quantidadeDeItensDetalhados,1,5,5));
         for(SalaDeExibicaoDTO sala: salas){
             JButton botaoDaSala = new JButton("Sala "+sala.getNumeroDaSala());
             botaoDaSala.setMaximumSize(new Dimension(250, 20));
             botaoDaSala.setBackground(adicionarCor(191, 4, 3));
             botaoDaSala.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            areaBotoesSalas.add(botaoDaSala);
+            conteiner.add(botaoDaSala);
         }
         
         JScrollPane painelBarraDeRolagem = new JScrollPane();
-        painelBarraDeRolagem.setViewportView(areaBotoesSalas);
+        painelBarraDeRolagem.setViewportView(conteiner);
         painelBarraDeRolagem.setAlignmentX(CENTER_ALIGNMENT);
         int larguraListaBotoes = 400;
         int alturaListaBotoes = 500;
@@ -144,7 +148,7 @@ public class TelaInicialAdministrador extends JFrame{
         painelBarraDeRolagem.setBounds(margemEsquerdaBotoes,100,larguraListaBotoes,alturaListaBotoes);
         painelBarraDeRolagem.setPreferredSize(new Dimension(larguraListaBotoes, alturaListaBotoes));
         painelBarraDeRolagem.setBorder(null);
-        areaBotoesSalas.setVisible(true);
+        conteiner.setVisible(true);
         painelBarraDeRolagem.setVisible(true);
         
         JLabel tituloSalas = new JLabel("Salas de exibição");
@@ -170,22 +174,22 @@ public class TelaInicialAdministrador extends JFrame{
             //filmes.add(dto);
         }
         
-        JPanel areaBotoesFilmes = new JPanel();
-        int quantidadeDeBotoes = filmes.size();
-        if(quantidadeDeBotoes<10){
-            quantidadeDeBotoes = 10;
+        JPanel conteiner = new JPanel();
+        int quantidadeDeItensDetalhados = filmes.size();
+        if(quantidadeDeItensDetalhados<10){
+            quantidadeDeItensDetalhados = 10;
         }
-        areaBotoesFilmes.setLayout(new GridLayout(quantidadeDeBotoes,1,5,5));
+        conteiner.setLayout(new GridLayout(quantidadeDeItensDetalhados,1,5,5));
         for(FilmeDTO filme: filmes){
             JButton botaoDoFilme = new JButton(filme.getTitulo());
             botaoDoFilme.setMaximumSize(new Dimension(250, 20));
             botaoDoFilme.setBackground(adicionarCor(191, 4, 3));
             botaoDoFilme.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            areaBotoesFilmes.add(botaoDoFilme);
+            conteiner.add(botaoDoFilme);
         }
         
         JScrollPane painelBarraDeRolagem = new JScrollPane();
-        painelBarraDeRolagem.setViewportView(areaBotoesFilmes);
+        painelBarraDeRolagem.setViewportView(conteiner);
         painelBarraDeRolagem.setAlignmentX(CENTER_ALIGNMENT);
         int larguraListaBotoes = 400;
         int alturaListaBotoes = 500;
@@ -193,7 +197,7 @@ public class TelaInicialAdministrador extends JFrame{
         painelBarraDeRolagem.setBounds(margemEsquerdaBotoes,100,larguraListaBotoes,alturaListaBotoes);
         painelBarraDeRolagem.setPreferredSize(new Dimension(larguraListaBotoes, alturaListaBotoes));
         painelBarraDeRolagem.setBorder(null);
-        areaBotoesFilmes.setVisible(true);
+        conteiner.setVisible(true);
         painelBarraDeRolagem.setVisible(true);
         
         JLabel tituloFilmes = new JLabel("Filmes");
@@ -203,37 +207,37 @@ public class TelaInicialAdministrador extends JFrame{
         tituloFilmes.setHorizontalAlignment(SwingConstants.CENTER);
         tituloFilmes.setVisible(true);
 
-        this.listaDasSalas = new JPanel();
-        listaDasSalas.setBounds(margemEsquerdaBotoes,200,larguraListaBotoes,alturaListaBotoes+100);
-        listaDasSalas.setVisible(true);
-        listaDasSalas.add(tituloFilmes);
-        listaDasSalas.add(painelBarraDeRolagem);
-        add(listaDasSalas);
+        this.listaDosFilmes = new JPanel();
+        listaDosFilmes.setBounds(margemEsquerdaBotoes,200,larguraListaBotoes,alturaListaBotoes+100);
+        listaDosFilmes.setVisible(true);
+        listaDosFilmes.add(tituloFilmes);
+        listaDosFilmes.add(painelBarraDeRolagem);
+        add(listaDosFilmes);
     }
     public void adicionarListaDeExibicoes(){
         
-        this.filmes = new ArrayList<FilmeDTO>();
+        this.exibicoes = new ArrayList<ExibicaoDTO>();
         for (int i = 1; i < 11; i++) {
             //FilmeDTO dto = new FilmeDTO();
             //filmes.add(dto);
         }
         
-        JPanel areaBotoesFilmes = new JPanel();
-        int quantidadeDeBotoes = filmes.size();
-        if(quantidadeDeBotoes<10){
-            quantidadeDeBotoes = 10;
+        JPanel conteiner = new JPanel();
+        int quantidadeDeItensDetalhados = filmes.size();
+        if(quantidadeDeItensDetalhados<10){
+            quantidadeDeItensDetalhados = 10;
         }
-        areaBotoesFilmes.setLayout(new GridLayout(quantidadeDeBotoes,1,5,5));
-        for(FilmeDTO filme: filmes){
-            JButton botaoDoFilme = new JButton(filme.getTitulo());
-            botaoDoFilme.setMaximumSize(new Dimension(250, 20));
-            botaoDoFilme.setBackground(adicionarCor(191, 4, 3));
-            botaoDoFilme.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            areaBotoesFilmes.add(botaoDoFilme);
+        conteiner.setLayout(new GridLayout(quantidadeDeItensDetalhados,1,5,5));
+        for(ExibicaoDTO dto: exibicoes){
+            JButton botaoExibicao = new JButton(dto.toString());
+            botaoExibicao.setMaximumSize(new Dimension(250, 20));
+            botaoExibicao.setBackground(adicionarCor(191, 4, 3));
+            botaoExibicao.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            conteiner.add(botaoExibicao);
         }
         
         JScrollPane painelBarraDeRolagem = new JScrollPane();
-        painelBarraDeRolagem.setViewportView(areaBotoesFilmes);
+        painelBarraDeRolagem.setViewportView(conteiner);
         painelBarraDeRolagem.setAlignmentX(CENTER_ALIGNMENT);
         int larguraListaBotoes = 400;
         int alturaListaBotoes = 500;
@@ -241,7 +245,7 @@ public class TelaInicialAdministrador extends JFrame{
         painelBarraDeRolagem.setBounds(margemEsquerdaBotoes,100,larguraListaBotoes,alturaListaBotoes);
         painelBarraDeRolagem.setPreferredSize(new Dimension(larguraListaBotoes, alturaListaBotoes));
         painelBarraDeRolagem.setBorder(null);
-        areaBotoesFilmes.setVisible(true);
+        conteiner.setVisible(true);
         painelBarraDeRolagem.setVisible(true);
         
         JLabel tituloFilmes = new JLabel("Filmes");
@@ -258,30 +262,31 @@ public class TelaInicialAdministrador extends JFrame{
         listaDasSalas.add(painelBarraDeRolagem);
         add(listaDasSalas);
     }
+
     public void adicionarListaDeFuncionarios(){
         
-        this.filmes = new ArrayList<FilmeDTO>();
+        this.funcionarios = new ArrayList<FuncionarioDTO>();
         for (int i = 1; i < 11; i++) {
             //FilmeDTO dto = new FilmeDTO();
             //filmes.add(dto);
         }
         
-        JPanel areaBotoesFilmes = new JPanel();
-        int quantidadeDeBotoes = filmes.size();
-        if(quantidadeDeBotoes<10){
-            quantidadeDeBotoes = 10;
+        JPanel conteiner = new JPanel();
+        int quantidadeDeItensDetalhados = filmes.size();
+        if(quantidadeDeItensDetalhados<10){
+            quantidadeDeItensDetalhados = 10;
         }
-        areaBotoesFilmes.setLayout(new GridLayout(quantidadeDeBotoes,1,5,5));
-        for(FilmeDTO filme: filmes){
-            JButton botaoDoFilme = new JButton(filme.getTitulo());
-            botaoDoFilme.setMaximumSize(new Dimension(250, 20));
-            botaoDoFilme.setBackground(adicionarCor(191, 4, 3));
-            botaoDoFilme.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            areaBotoesFilmes.add(botaoDoFilme);
+        conteiner.setLayout(new GridLayout(quantidadeDeItensDetalhados,1,5,5));
+        for(FuncionarioDTO dto: funcionarios){
+            JButton botaoFuncionario = new JButton(dto.getNomeCompleto());
+            botaoFuncionario.setMaximumSize(new Dimension(250, 20));
+            botaoFuncionario.setBackground(adicionarCor(191, 4, 3));
+            botaoFuncionario.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            conteiner.add(botaoFuncionario);
         }
         
         JScrollPane painelBarraDeRolagem = new JScrollPane();
-        painelBarraDeRolagem.setViewportView(areaBotoesFilmes);
+        painelBarraDeRolagem.setViewportView(conteiner);
         painelBarraDeRolagem.setAlignmentX(CENTER_ALIGNMENT);
         int larguraListaBotoes = 400;
         int alturaListaBotoes = 500;
@@ -289,7 +294,7 @@ public class TelaInicialAdministrador extends JFrame{
         painelBarraDeRolagem.setBounds(margemEsquerdaBotoes,100,larguraListaBotoes,alturaListaBotoes);
         painelBarraDeRolagem.setPreferredSize(new Dimension(larguraListaBotoes, alturaListaBotoes));
         painelBarraDeRolagem.setBorder(null);
-        areaBotoesFilmes.setVisible(true);
+        conteiner.setVisible(true);
         painelBarraDeRolagem.setVisible(true);
         
         JLabel tituloFilmes = new JLabel("Filmes");
@@ -306,6 +311,16 @@ public class TelaInicialAdministrador extends JFrame{
         listaDasSalas.add(painelBarraDeRolagem);
         add(listaDasSalas);
     }
+
+    public void detalharSala(){
+        this.salaDTO = new SalaDeExibicaoDTO();
+        salaDTO.setNumeroDaSala(1);
+        salaDTO.setQuantidadeDeAssentos(40);
+
+        this.detalhesSala = new JPanel();
+        
+    }
+
     public Color adicionarCor(int num1, int num2, int num3) {
         float[] cor = new float[3];
 		cor = Color.RGBtoHSB(num1, num2, num3, cor);
@@ -464,4 +479,5 @@ public class TelaInicialAdministrador extends JFrame{
         public void setListaDosClientes(JPanel listaDosClientes) {
             this.listaDosClientes = listaDosClientes;
         }
-}
+
+    }
