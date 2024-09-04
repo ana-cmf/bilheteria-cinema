@@ -5,6 +5,9 @@ import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 import dto.ExibicaoDTO;
 import dto.FilmeDTO;
@@ -38,13 +41,13 @@ public class TelaInicialAdministrador extends JFrame{
     private JPanel listaDosFuncionarios;
     private JPanel listaDosClientes;
 
-    private JPanel detalhesSala;
+    private JPanel informacoesSala;
     
     public TelaInicialAdministrador(){
         adicionarMenu();
         adicionarBotaoLogin();
         adicionarCaixaDePesquisa();
-        adicionarListaDeFilmes();
+        adicionarListaDeSalas();
         criarTela();
         repaint();
     }
@@ -118,25 +121,59 @@ public class TelaInicialAdministrador extends JFrame{
     
     public void adicionarListaDeSalas(){
         
-        this.salas = new ArrayList<SalaDeExibicaoDTO>();
+        List<SalaDeExibicaoDTO> salasCadastradas = new ArrayList<SalaDeExibicaoDTO>();
         for (int i = 1; i < 11; i++) {
             SalaDeExibicaoDTO dto = new SalaDeExibicaoDTO();
             dto.setNumeroDaSala(i);
-            salas.add(dto);
+            salasCadastradas.add(dto);
         }
         
         JPanel conteiner = new JPanel();
-        int quantidadeDeItensDetalhados = salas.size();
+        int quantidadeDeItensDetalhados = salasCadastradas.size();
         if(quantidadeDeItensDetalhados<10){
             quantidadeDeItensDetalhados = 10;
         }
         conteiner.setLayout(new GridLayout(quantidadeDeItensDetalhados,1,5,5));
-        for(SalaDeExibicaoDTO sala: salas){
-            JButton botaoDaSala = new JButton("Sala "+sala.getNumeroDaSala());
-            botaoDaSala.setMaximumSize(new Dimension(250, 20));
-            botaoDaSala.setBackground(adicionarCor(191, 4, 3));
-            botaoDaSala.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            conteiner.add(botaoDaSala);
+
+        class OuvinteSelecao implements ActionListener{
+            
+            private SalaDeExibicaoDTO salaRelacionada;
+
+            public OuvinteSelecao(SalaDeExibicaoDTO salaRelacionada){
+                this.salaRelacionada = salaRelacionada;
+            }
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource() instanceof JCheckBox){
+                    JCheckBox selecao = (JCheckBox) e.getSource();
+                    if(selecao.isSelected()){
+                        salas.add(salaRelacionada);
+                    }else if(salas.contains(salaRelacionada)){
+                        salas.remove(salaRelacionada);
+                    }
+
+                }
+                
+            }
+        
+        }
+
+        for(SalaDeExibicaoDTO sala: salasCadastradas){
+
+            JPanel conteinerDetalhes = new JPanel();
+            JCheckBox selecao = new JCheckBox();
+            selecao.addActionListener(new OuvinteSelecao(sala));
+
+            JTextArea informacoes = new JTextArea(sala.toString());
+            informacoes.setEditable(false);
+		    informacoes.setCaretColor(conteiner.getBackground());
+		    informacoes.setDisabledTextColor(Color.black);
+		    informacoes.setOpaque(false);
+
+            conteinerDetalhes.add(selecao);
+            conteinerDetalhes.add(informacoes);
+            conteiner.add(conteinerDetalhes);
         }
         
         JScrollPane painelBarraDeRolagem = new JScrollPane();
@@ -317,7 +354,7 @@ public class TelaInicialAdministrador extends JFrame{
         salaDTO.setNumeroDaSala(1);
         salaDTO.setQuantidadeDeAssentos(40);
 
-        this.detalhesSala = new JPanel();
+        this.informacoesSala = new JPanel();
         
     }
 
