@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import dao.exception.SalaDeExibicaoNaoEncontradaException;
 import dto.SalaDeExibicaoDTO;
 
 public class SalaDeExibicaoDAOImpl implements SalaDeExibicaoDAO {
 
+    @Override
     public void cadastrarSalaExibicao(SalaDeExibicaoDTO sala) {
         String sqlSala = "INSERT INTO bilheteria.sala_exibicao (numero_sala, quantidade_assentos) VALUES (?, ?)";
         String sqlAssento = "INSERT INTO bilheteria.assento (id_assento, posicao_assento, reservado, numero_sala) VALUES (?, ?, ?, ?)";
@@ -78,6 +78,7 @@ public class SalaDeExibicaoDAOImpl implements SalaDeExibicaoDAO {
         return salas;
     }
 
+    @Override
     public SalaDeExibicaoDTO buscarSalaExibicao(SalaDeExibicaoDTO numeroDaSala) throws SalaDeExibicaoNaoEncontradaException {
         String sql = "SELECT * FROM bilheteria.sala_exibicao WHERE numero_sala = ?";
         SalaDeExibicaoDTO sala = null;
