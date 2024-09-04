@@ -35,6 +35,8 @@ public class TelaInicialAdministrador extends JFrame{
     private JPanel listaDosFilmes;
     private JPanel listaDosFuncionarios;
     private JPanel listaDosClientes;
+
+    private JPanel detalhesSala;
     
     public TelaInicialAdministrador(){
         adicionarMenu();
@@ -258,6 +260,7 @@ public class TelaInicialAdministrador extends JFrame{
         listaDasSalas.add(painelBarraDeRolagem);
         add(listaDasSalas);
     }
+
     public void adicionarListaDeFuncionarios(){
         
         this.filmes = new ArrayList<FilmeDTO>();
@@ -306,6 +309,16 @@ public class TelaInicialAdministrador extends JFrame{
         listaDasSalas.add(painelBarraDeRolagem);
         add(listaDasSalas);
     }
+
+    public void detalharSala(){
+        this.salaDTO = new SalaDeExibicaoDTO();
+        salaDTO.setNumeroDaSala(1);
+        salaDTO.setQuantidadeDeAssentos(40);
+
+        this.detalhesSala = new JPanel();
+        
+    }
+
     public Color adicionarCor(int num1, int num2, int num3) {
         float[] cor = new float[3];
 		cor = Color.RGBtoHSB(num1, num2, num3, cor);
@@ -464,4 +477,5 @@ public class TelaInicialAdministrador extends JFrame{
         public void setListaDosClientes(JPanel listaDosClientes) {
             this.listaDosClientes = listaDosClientes;
         }
-}
+
+    }
