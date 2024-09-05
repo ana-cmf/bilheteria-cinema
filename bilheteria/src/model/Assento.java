@@ -11,10 +11,17 @@ public class Assento {
     public Assento(int posicao){
         this.posicao = posicao;
         this.reservado = false;
+<<<<<<< HEAD
 
     }
     public Assento() {
         this.id = System.currentTimeMillis();
+=======
+    }
+   
+    public Assento(Long id) {
+	    this.id = System.currentTimeMillis();
+>>>>>>> b4a3b462ee03b6cacbf0cf2fe3445662abc297b5
     }
     public Long getId() {
         return id;
@@ -23,7 +30,11 @@ public class Assento {
         this.id = id;
     }
 
+<<<<<<< HEAD
     public Assento getPosicao() {
+=======
+    public int getPosicao() {
+>>>>>>> b4a3b462ee03b6cacbf0cf2fe3445662abc297b5
         return posicao;
     }
     public void  setPosicao(int posicao) {
