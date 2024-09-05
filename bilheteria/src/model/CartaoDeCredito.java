@@ -10,9 +10,8 @@ public class CartaoDeCredito implements FormaDePagamento{
     private SalaDeExibicao exibicao;
     private Ingresso ingressoCliente;
  
-    public CartaoDeCredito(Ingresso ingresso, SalaDeExibicao exibicao) {
+    public CartaoDeCredito(Ingresso ingresso) {
         this.ingressoCliente = ingresso;
-        this.exibicao = exibicao;
     }    
 
     public CartaoDeCredito() {
@@ -35,34 +34,54 @@ public class CartaoDeCredito implements FormaDePagamento{
     public float  getTaxa() {
         return taxa;
     }
-    public float calcularValorSemParcelar(CompraDTO compra) {
+	public float calcularValorSemParcelar(CompraDTO compra) {
         if (compra.getIngressos() == null || compra.getIngressos().isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("A lista de ingressos não pode ser nula ou vazia.");
         }
+        
         float precoFinal = 0;
+        
         for (IngressoDTO ingresso : compra.getIngressos()) {
             float preco = ingresso.getPreco();
-            ingresso.setPreco(preco);
+        
+            // Adiciona o preço adicional para exibições em 3D
+            if (exibicao.isExibicao3D(ingresso.getExibicao().getSalaDeExibicao().getModeloDeExibicao())) {
+                preco += 10.0f;
+            }
+        
+            // Se o cliente tem isenção, o preço é zerado
+            if (ingressoCliente.ingressoPodeSerIsento(ingresso)) {
+                preco = 0;
+            } else if (ingressoCliente.isMeiaEntrada(ingresso.getTipoDeEntrada())) {
+                // Caso seja meia entrada, aplica o desconto de 50%
+                preco = preco / 2;
+            }
+        
             precoFinal += preco;
         }
+        
         return precoFinal;
-    }
+        
+}
 		
 public boolean podeParcelar(CompraDTO parcelado){
     return calcularValorSemParcelar(parcelado) >= 60;
 }
     @Override
     public CompraDTO calcularValor(CompraDTO ingresso) {
-        float precoFinal;
-        if (podeParcelar(ingresso)) {
-            float valorParcela = calcularValorSemParcelar(ingresso) / numParcelas;
-            precoFinal = (valorParcela + getTaxa()) * getNumeroDeParcelas();
-        } else {
-            precoFinal = calcularValorSemParcelar(ingresso);
+        if(podeParcelar(ingresso) == true){
+            float valorParcela= calcularValorSemParcelar(ingresso)/numParcelas;
+            float precoComTaxaParcela= valorParcela+getTaxa();
+            float precoFinal = precoComTaxaParcela*getNumeroDeParcelas();
+            ingresso.setTotal(precoFinal);
+            return ingresso;
+        }else{
+            ingresso.setTotal(calcularValorSemParcelar(ingresso));
+            return ingresso;
+
         }
-        ingresso.setTotal(precoFinal);
-        return ingresso;
-    }    
+
+    }
     public SalaDeExibicao getExibicao() {
         return exibicao;
     }

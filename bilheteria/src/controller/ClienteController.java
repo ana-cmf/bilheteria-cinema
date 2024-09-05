@@ -1,9 +1,9 @@
 package controller;
 
-import model.Cliente;
 import dao.ClienteDAO;
 import dao.ClienteDAOImpl;
 import dto.ClienteDTO;
+import model.Cliente;
 import model.execption.CpfInvalidoException;
 import model.execption.EmailInvalidoException;
 
@@ -37,7 +37,6 @@ public class ClienteController{
             cliente.setEmail(dto.getEmail());
         } catch (EmailInvalidoException ex) {
         }
-        cliente.setIdade(dto.getIdade());
         clientedao.cadastrarCliente(dto);
     }
     public void excluirClienteController(ClienteDTO dto){

@@ -92,4 +92,5 @@ public static Exibicao fromDTO(ExibicaoDTO dto) {
         dto.setHorario(this.horario);
         return dto;
     }
+
 }

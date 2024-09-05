@@ -1,5 +1,6 @@
 package model;
 
+import dto.AssentoDTO;
 import model.execption.AssentoJaReservadoException;
 import dto.AssentoDTO;
 
@@ -8,13 +9,23 @@ public class Assento {
     private int posicao;
     private boolean reservado;
     
-    public Assento(int posicao, boolean reservado){
+    public Assento(int posicao){
         this.posicao = posicao;
         this.reservado = false;
 
     }
     public Assento() {
         this.id = System.currentTimeMillis();
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+   
+    public Assento(Long id) {
+	    this.id = System.currentTimeMillis();
     }
     public Long getId() {
         return id;

@@ -1,7 +1,6 @@
 package model;
 
 import dto.IngressoDTO;
-import dto.ModeloDeExibicaoDTO;
 import dto.TipoDeEntradaDTO;
 import model.execption.CpfInvalidoException;
 import model.execption.EmailInvalidoException;
@@ -17,7 +16,6 @@ public class Ingresso{
     private boolean pagamentoRealizado;
 
     public Ingresso() {
-        this.exibicao = new Exibicao();
 	    this.id = System.currentTimeMillis();
         this.preco = 30f;
         
@@ -87,12 +85,13 @@ public class Ingresso{
         }
         return true;
      }
-     public boolean ingressoPodeSerIsento(Filme dto) {
-    	 return dto.getClassificacaoIndicativa() == 0;
+     public boolean ingressoPodeSerIsento(IngressoDTO ingresso) {
+    	 return ingresso.getExibicao().getFilme().getClassificacaoIndicativa() == 0;
      }
-     public void ingressoIsentado(Filme dto) {
-    	 if(ingressoPodeSerIsento(dto)) {
-         this.preco=0f;
+     public void ingressoIsentado(IngressoDTO ingresso) {
+    	 if(ingressoPodeSerIsento(ingresso)) {
+    		 float precoIsento=0f;
+    		 ingresso.setPreco(precoIsento);
         }
     }
 
@@ -113,18 +112,8 @@ public class Ingresso{
         );
 }
     public boolean isMeiaEntrada(TipoDeEntradaDTO dto){
-        if (dto != null && TipoDeEntrada._MEIA.equals(TipoDeEntrada.valueOf(dto.getTipo().toUpperCase()))){
-        }
-        return true;
+        return dto != null && TipoDeEntrada._MEIA.equals(TipoDeEntrada.valueOf(dto.getTipo().toUpperCase()));
     }
-    public boolean isExibicao3D(ModeloDeExibicaoDTO dto) {
-        if (dto != null && this.getExibicao() != null && this.getExibicao().getSalaDeExibicao() != null) {
-            ModeloDeExibicao modeloExibicao = this.getExibicao().getSalaDeExibicao().getModeloDeExibicao();
-            return modeloExibicao != null && modeloExibicao.toString().equals(dto.getModelo());
-        }
-        return false;
-    }
-    
     public static Ingresso fromDTO(IngressoDTO dto) throws EmailInvalidoException, CpfInvalidoException {
         Ingresso ingresso = new Ingresso();
         ingresso.setId(dto.getId());
@@ -150,3 +139,7 @@ public class Ingresso{
         return dto;
     }
 }
+
+
+
+    

@@ -28,12 +28,12 @@ public class Compra {
     }
 
 
-    public List<Ingresso> adicionarIngresso(IngressoDTO dto) throws EmailInvalidoException, CpfInvalidoException {
+
+    public void adicionarIngresso(IngressoDTO dto) throws EmailInvalidoException, CpfInvalidoException {
         if (dto != null) {
             Ingresso ingresso = Ingresso.fromDTO(dto);
             ingressos.add(ingresso);
         }
-        return ingressos;
     }
     public float getTotal() {
         return total;
@@ -71,17 +71,15 @@ public class Compra {
                      .orElse("Nenhum ingresso"));
     }
     public void calcularValorCompra() {
-        if (formaDePagamento != null) {
-            List<IngressoDTO> ingressoDTOs = new ArrayList<>();
-            for (Ingresso ingresso : ingressos) {
-                ingressoDTOs.add(ingresso.toDTO());
-            }
-            CompraDTO dto = new CompraDTO();
-            dto.setIngressos(ingressoDTOs);
-            CompraDTO resultadoDTO = formaDePagamento.calcularValor(dto);
-            this.total = resultadoDTO.getTotal();  // Usa o total retornado do DTO
-    } else {
-        throw new IllegalStateException("Forma de pagamento não definida!");
+        CompraDTO dto = new CompraDTO();
+        List<IngressoDTO> ingressoDTOs = new ArrayList<>();
+
+        for (Ingresso ingresso : ingressos) {
+            dto.getIngressos().add(ingresso.toDTO());
+
+        }
+        dto.setIngressos(ingressoDTOs);
+        CompraDTO resultadoDTO = formaDePagamento.calcularValor(dto);
+        setTotal(resultadoDTO.getTotal());
     }
-    }     
 }

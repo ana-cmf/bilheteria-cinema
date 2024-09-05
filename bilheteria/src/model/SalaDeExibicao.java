@@ -10,19 +10,25 @@ public class SalaDeExibicao {
     private Assento[] assentos = new Assento[40];
     
 
-    public SalaDeExibicao( ){
-        criarAssento();
-
+    public SalaDeExibicao(int quantidadeDeAssentos, int numeroDaSala, ModeloDeExibicao modeloDeExibicao) {
+        this.quantidadeDeAssentos = quantidadeDeAssentos;
+        this.numeroDaSala = numeroDaSala;
+        this.modeloDeExibicao = modeloDeExibicao;
+        this.assentos = new Assento[quantidadeDeAssentos];
+        criarAssento(quantidadeDeAssentos);
     }
 
-    private void  criarAssento(){
-        this.assentos = new Assento[40];
-        this.quantidadeDeAssentos=assentos.length;
-        for (int i=1; i<assentos.length; i++) {
-            assentos[i]=new Assento();
-            assentos[i].setPosicao(i);
+    private SalaDeExibicao() {
+    }
+
+    private Assento[] criarAssento(int quantidadeDeAssentos) {
+        Assento[] assentos = new Assento[quantidadeDeAssentos];
+
+        for (int i = 1; i < quantidadeDeAssentos; i++) {
+            assentos[i] = new Assento();
         }
-    }
+        return assentos;
+        }
 
     public int getNumeroDaSala() {
         return numeroDaSala;
@@ -48,6 +54,12 @@ public class SalaDeExibicao {
     public void setAssentos(Assento[] assentos) {
         this.assentos = assentos;
     }
+    public boolean isExibicao3D(ModeloDeExibicaoDTO dto){
+        if (dto != null && modeloDeExibicao.equals(ModeloDeExibicao.valueOf(dto.getModelo()))) {
+            return dto.getModelo().equals(ModeloDeExibicao._3D.toString());
+        }
+        return false;
+    }
     @Override
     public String toString() {
         return String.format(
@@ -59,7 +71,7 @@ public class SalaDeExibicao {
         SalaDeExibicao sala = new SalaDeExibicao();
         sala.setNumeroDaSala(dto.getNumeroDaSala());
         sala.setQuantidadeDeAssentos(dto.getQuantidadeDeAssentos());
-        sala.criarAssento();
+
         ModeloDeExibicao modelo = ModeloDeExibicao.valueOf(dto.getModeloDeExibicao().getModelo());
         sala.setModeloDeExibicao(modelo);
 
