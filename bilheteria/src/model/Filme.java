@@ -1,8 +1,6 @@
 package model;
 
-import dto.IngressoDTO;
-import model.execption.ClassificacaoNaoIndicadaException;
-
+import dto.FilmeDTO;
 
 public class Filme {
     private Long id;
@@ -11,14 +9,11 @@ public class Filme {
     private int duracaoDoFilme;
     private int classificacaoIndicativa;
 
-<<<<<<< HEAD
-
-    
     public Filme() {
-=======
-    public Filme(Long id) {
->>>>>>> Yasmin
 	    this.id = System.currentTimeMillis();
+    }
+    public Filme(Long id) {
+        this.id = id;
     }
     public Long getId() {
         return id;
@@ -50,28 +45,28 @@ public class Filme {
     public void setClassificacaoIndicativa(int classificacaoIndicativa) {
         this.classificacaoIndicativa = classificacaoIndicativa;
     }
-    public void classificacaoIndicadaPelaIdade(IngressoDTO ingresso)throws ClassificacaoNaoIndicadaException{
-        int indicado =ingresso.getCliente().getIdade();
+    @Override
+    public String toString() {
+        return String.format("Filme{ID=%d, Titulo='%s', Genero='%s', Duracao=%d minutos, Classificacao Indicativa=%d}",
+                             id, titulo, genero, duracaoDoFilme, classificacaoIndicativa);
+    }
+    public static Filme fromDTO(FilmeDTO dto) {
+        Filme filme = new Filme();
+        filme.setId(dto.getId());
+        filme.setTitulo(dto.getTitulo());
+        filme.setClassificacaoIndicativa(dto.getClassificacaoIndicativa());
+        filme.setDuracaoDoFilme(dto.getDuracaoDoFilme());
+        filme.setGenero(dto.getGenero());
+        return filme;
+    }
 
-        if(classificacaoIndicativa > 6){
-            if (indicado < 10) {
-                throw new ClassificacaoNaoIndicadaException();
-            }
-            if (indicado < 12) {
-                throw new ClassificacaoNaoIndicadaException();
-            }
-            if (indicado < 14) {
-                throw new ClassificacaoNaoIndicadaException();
-            }
-            if (indicado < 16) {
-                throw new ClassificacaoNaoIndicadaException();
-            }
-            if (indicado < 18) {
-                throw new ClassificacaoNaoIndicadaException();
-            }
-        else if (classificacaoIndicativa<6) {
-            System.out.println("Classificação Indicativa Livre");
-            }
-        }
+    public FilmeDTO toDTO() {
+        FilmeDTO dto = new FilmeDTO();
+        dto.setId(this.id);
+        dto.setTitulo(this.titulo);
+        dto.setClassificacaoIndicativa(this.classificacaoIndicativa);
+        dto.setDuracaoDoFilme(this.duracaoDoFilme);
+        dto.setGenero(this.genero);
+        return dto;
     }
 }

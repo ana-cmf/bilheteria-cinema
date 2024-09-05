@@ -1,17 +1,28 @@
 package dto;
 
+import java.util.List;
+
 
 public class CompraDTO {
-    private IngressoDTO[] ingressos;
+    private List <IngressoDTO> ingressos;
     private float total;
     private FormaDePagamentoDTO formaDePagamento;
+    private Long id;
     
 
-    public IngressoDTO[] getIngressos() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List <IngressoDTO> getIngressos() {
         return ingressos;
     }
 
-    public void setIngressos(IngressoDTO[] ingressos) {
+    public void setIngressos(List<IngressoDTO> ingressos) {
         this.ingressos = ingressos;
     }
 
@@ -30,5 +41,4 @@ public class CompraDTO {
     public void setFormaDePagamento(FormaDePagamentoDTO formaDePagamento) {
         this.formaDePagamento = formaDePagamento;
     }
-
 }

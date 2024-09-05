@@ -1,5 +1,6 @@
 package model;
 
+import dto.ExibicaoDTO;
 import java.time.LocalDateTime;
 public class Exibicao {
     private Long id;
@@ -7,10 +8,10 @@ public class Exibicao {
     private SalaDeExibicao salaDeExibicao;
     private boolean legendado;
     private LocalDateTime horario;
-    
-    
-    public Exibicao(Long id){
+
+    public Exibicao() {
         this.id = System.currentTimeMillis();
+
     }
     public Filme getFilme() {
         return filme;
@@ -61,4 +62,35 @@ public class Exibicao {
     public boolean isSecaoJaExibida() {
         return horario.isBefore(LocalDateTime.now());
     }
+    @Override
+public String toString() {
+    return String.format(
+        "Exibicao{ID=%d, Filme='%s', Sala=%d, Legendado=%s, Horário=%s}",
+        id,
+        filme != null ? filme.getTitulo() : "N/A",
+        salaDeExibicao != null ? salaDeExibicao.getNumeroDaSala() : -1,
+        legendado ? "Sim" : "Não",
+        horario != null ? horario.toString() : "N/A"
+    );
+}
+public static Exibicao fromDTO(ExibicaoDTO dto) {
+        Exibicao exibicao = new Exibicao();
+        exibicao.setId(dto.getId());
+        exibicao.setFilme(Filme.fromDTO(dto.getFilme()));
+        exibicao.setSalaDeExibicao(SalaDeExibicao.fromDTO(dto.getSalaDeExibicao()));
+        exibicao.setLegendado(dto.isLegendado());
+        exibicao.setHorario(dto.getHorario());
+        return exibicao;
+    }
+
+    public ExibicaoDTO toDTO() {
+        ExibicaoDTO dto = new ExibicaoDTO();
+        dto.setId(this.id);
+        dto.setFilme(this.filme.toDTO());
+        dto.setSalaDeExibicao(this.salaDeExibicao.toDTO());
+        dto.setLegendado(this.legendado);
+        dto.setHorario(this.horario);
+        return dto;
+    }
+
 }

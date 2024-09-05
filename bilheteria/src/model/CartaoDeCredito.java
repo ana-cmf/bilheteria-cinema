@@ -7,13 +7,23 @@ public class CartaoDeCredito implements FormaDePagamento{
 
     private int numParcelas;
     private float taxa;
+    private SalaDeExibicao exibicao;
+    private Ingresso ingressoCliente;
+ 
+    public CartaoDeCredito(Ingresso ingresso) {
+        this.ingressoCliente = ingresso;
+    }    
+
+    public CartaoDeCredito() {
+    }
+    
 
     public void setNumParcelas(int numParcelas){
         this.numParcelas = numParcelas;
 
     }
     public void setTaxa(float taxa){
-        this.taxa = taxa;
+       this.taxa=taxa;
 
     }
     @Override
@@ -25,20 +35,34 @@ public class CartaoDeCredito implements FormaDePagamento{
         return taxa;
     }
 	public float calcularValorSemParcelar(CompraDTO compra) {
-        float precoFinal= 0;
-
-        for(IngressoDTO ingresso: compra.getIngressos()){
-            if(ingresso.getCliente().getIdade() <= 6){
-                 float preco = 0;
-                 precoFinal+=preco;
-
-            }else{
-            float preco=ingresso.getPreco();
-            precoFinal+=preco;
+        if (compra.getIngressos() == null || compra.getIngressos().isEmpty()) {
+            throw new IllegalArgumentException("A lista de ingressos não pode ser nula ou vazia.");
+        }
+        
+        float precoFinal = 0;
+        
+        for (IngressoDTO ingresso : compra.getIngressos()) {
+            float preco = ingresso.getPreco();
+        
+            // Adiciona o preço adicional para exibições em 3D
+            if (exibicao.isExibicao3D(ingresso.getExibicao().getSalaDeExibicao().getModeloDeExibicao())) {
+                preco += 10.0f;
             }
+        
+            // Se o cliente tem isenção, o preço é zerado
+            if (ingressoCliente.ingressoPodeSerIsento(ingresso)) {
+                preco = 0;
+            } else if (ingressoCliente.isMeiaEntrada(ingresso.getTipoDeEntrada())) {
+                // Caso seja meia entrada, aplica o desconto de 50%
+                preco = preco / 2;
+            }
+        
+            precoFinal += preco;
         }
+        
         return precoFinal;
-        }
+        
+}
 		
     public boolean podeParcelar(CompraDTO parcelado){
         if(calcularValorSemParcelar(parcelado) >= 60){
@@ -60,5 +84,17 @@ public class CartaoDeCredito implements FormaDePagamento{
 
         }
 
+    }
+    public SalaDeExibicao getExibicao() {
+        return exibicao;
+    }
+    public void setExibicao(SalaDeExibicao exibicao) {
+        this.exibicao = exibicao;
+    }
+    public Ingresso getIngressoCliente() {
+        return ingressoCliente;
+    }
+    public void setIngressoCliente(Ingresso ingressoCliente) {
+        this.ingressoCliente = ingressoCliente;
     }
 }
