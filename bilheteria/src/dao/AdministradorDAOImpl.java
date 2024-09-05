@@ -62,17 +62,19 @@ public class AdministradorDAOImpl implements AdministradorDAO {
 
     @Override
     public boolean buscarAdminstrador() {
-        String sql = "SELECT COUNT(*) FROM bilheteria.administrador";
+        String verificarSql = "SELECT COUNT(*) FROM bilheteria.administrador";
+        String inserirSql = "INSERT INTO bilheteria.administrador (nome_usuario_admin, senha_admin) VALUES (?, ?)";
     
         try (Connection conn = ConexaoBancoDeDados.conectar();
-            PreparedStatement verificarPstmt = conn.prepareStatement(sql)) {
+             PreparedStatement verificarPstmt = conn.prepareStatement(verificarSql);
+             PreparedStatement inserirPstmt = conn.prepareStatement(inserirSql)) {
     
             ResultSet rs = verificarPstmt.executeQuery();
             rs.next();
             int count = rs.getInt(1);
     
             if (count > 0) {
-                return true;
+                System.out.println("Já existe um administrador cadastrado");
             }
             
         } catch (SQLException e) {

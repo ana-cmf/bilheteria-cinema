@@ -13,9 +13,6 @@ public class ModeloDeExibicaoDTO {
     public void setModelo(String modelo) {
     	this.modelo = modelo;
     }
-<<<<<<< HEAD
-}
-=======
     public ModeloDeExibicaoDTO getModelo3D() {
         return modelo3D;
     }
@@ -23,4 +20,3 @@ public class ModeloDeExibicaoDTO {
         modelo3D = modelo3d;
     }
 }
->>>>>>> b4a3b462ee03b6cacbf0cf2fe3445662abc297b5

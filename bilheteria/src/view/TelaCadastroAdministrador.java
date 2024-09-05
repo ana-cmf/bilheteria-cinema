@@ -88,7 +88,6 @@ public class TelaCadastroAdministrador extends JFrame implements ActionListener,
         
         this.campoNome = new JTextField();
         campoNome.setBounds(largura/4, nome.getY()+40, largura/2, 20);
-        campoNome.setBorder(null);
         campoNome.addKeyListener(this);
         quadradoVermelho.add(campoNome);
         
@@ -108,7 +107,6 @@ public class TelaCadastroAdministrador extends JFrame implements ActionListener,
         
         this.campoSenha = new JPasswordField();
         campoSenha.setBounds(largura/4, senha.getY()+40, largura/2, 20);
-        campoSenha.setBorder(null);
         campoSenha.addKeyListener(this);
         quadradoVermelho.add(campoSenha);
         

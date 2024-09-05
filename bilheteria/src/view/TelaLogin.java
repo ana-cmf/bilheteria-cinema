@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controller.LoginController;
 import dto.AdministradorDTO;
 import dto.FuncionarioDTO;
 
@@ -28,12 +27,9 @@ public class TelaLogin extends JFrame implements KeyListener, ActionListener{
     private JPasswordField campoSenha;
     private JLabel mensagemErroNome;
     private JLabel mensagemErroSenha;
-    private JLabel mensagemUsuarioNaoEncontrado;
     private JButton botaoEntrar;
-    private LoginController controller;
     
     public TelaLogin(){
-        this.controller = new LoginController(this);
         criarTela();
     }
     
@@ -97,13 +93,6 @@ public class TelaLogin extends JFrame implements KeyListener, ActionListener{
         mensagemErroNome.setVisible(false);
         quadradoVermelho.add(mensagemErroNome);
         
-        this.mensagemUsuarioNaoEncontrado = new JLabel();
-        mensagemUsuarioNaoEncontrado.setFont(fonteErro);
-        mensagemUsuarioNaoEncontrado.setForeground(Color.YELLOW);
-        mensagemUsuarioNaoEncontrado.setBounds(largura/4, campoNome.getY()+campoNome.getHeight(), campoNome.getWidth(), 12);
-        mensagemUsuarioNaoEncontrado.setVisible(false);
-        quadradoVermelho.add(mensagemUsuarioNaoEncontrado);    
-        
         JLabel senha = new JLabel("Senha:");
         senha.setFont(new Font("Futura", Font.BOLD, 14));
         senha.setForeground(Color.WHITE);
@@ -126,7 +115,6 @@ public class TelaLogin extends JFrame implements KeyListener, ActionListener{
         botaoEntrar.setBackground(Color.LIGHT_GRAY);
         botaoEntrar.setEnabled(false);
         botaoEntrar.setBounds(largura/3, (int) (altura*0.75), largura/3, 60);
-        botaoEntrar.addActionListener(this);
         quadradoVermelho.add(botaoEntrar);
         
         quadradoVermelho.setVisible(true);
@@ -145,9 +133,10 @@ public class TelaLogin extends JFrame implements KeyListener, ActionListener{
 	}
 
     public void mostrarMensagensDeErroDoNome(){
-        mensagemErroNome.setText("Usuário inválido!");
-        mensagemErroNome.setVisible(true);
-    
+        if(campoNome.getText().isBlank()){
+            mensagemErroNome.setText("");
+            mensagemErroNome.setVisible(true);
+        }
     }
 
     public void habilitarBotao(){
@@ -191,7 +180,8 @@ public class TelaLogin extends JFrame implements KeyListener, ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botaoEntrar){
-            controller.logarUsuario(salvarDadosParaAdministrador());
+            salvarDadosParaAdministrador();
+            salvarDadosParaFuncionario();
         }
     }
 
