@@ -17,7 +17,7 @@ public class SalaDeExibicaoDTO {
         private Assento[] criarAssento(int quantidadeDeAssentos) {
         Assento[] assentos = new Assento[quantidadeDeAssentos];
         for (int i = 0; i < quantidadeDeAssentos; i++) {
-            assentos[i] = new Assento(); // Inicializa cada assento
+            assentos[i] = new Assento(null); // Inicializa cada assento
         }
         return assentos;
     }
