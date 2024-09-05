@@ -5,7 +5,17 @@ public class AssentoDTO {
     private int posicao;
     private boolean reservado;
     
-    public Long getId() {
+    public AssentoDTO(Long id, SalaDeExibicaoDTO salaDeExibicao, int posicao, boolean reservado) {
+		super();
+		this.id = id;
+		this.salaDeExibicao = salaDeExibicao;
+		this.posicao = posicao;
+		this.reservado = reservado;
+	}
+    public AssentoDTO() {
+    	
+    }
+	public Long getId() {
         return id;
     }
     public void setId(Long id) {

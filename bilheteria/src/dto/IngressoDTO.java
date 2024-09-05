@@ -10,7 +10,20 @@ public class IngressoDTO {
     private FormaDePagamentoDTO formaDePagamento;
     private boolean pagamentoRealizado;
 
-    public Long getId() {
+    public IngressoDTO(Long id, ExibicaoDTO exibicao, AssentoDTO assento, ClienteDTO cliente, float preco,TipoDeEntradaDTO tipoDeEntrada, FormaDePagamentoDTO formaDePagamento, boolean pagamentoRealizado) {
+		this.id = id;
+		this.exibicao = exibicao;
+		this.assento = assento;
+		this.cliente = cliente;
+		this.preco = preco;
+		this.tipoDeEntrada = tipoDeEntrada;
+		this.formaDePagamento = formaDePagamento;
+		this.pagamentoRealizado = pagamentoRealizado;
+	}
+    public IngressoDTO() {
+    	
+    }
+	public Long getId() {
         return id;
     }
     public void setId(Long id) {
@@ -55,5 +68,11 @@ public class IngressoDTO {
     }
     public void setPagamentoRealizado(boolean pagamentoRealizado) {
         this.pagamentoRealizado = pagamentoRealizado;
+    }
+    public FormaDePagamentoDTO getFormaDePagamento() {
+        return formaDePagamento;
+    }
+    public void setFormaDePagamento(FormaDePagamentoDTO formaDePagamento) {
+        this.formaDePagamento = formaDePagamento;
     }
 }

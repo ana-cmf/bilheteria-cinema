@@ -1,8 +1,6 @@
 package dao;
 
 import dto.AssentoDTO;
-import dto.SalaDeExibicaoDTO;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,22 +11,38 @@ import java.util.List;
 public class AssentoDAOImpl implements AssentoDAO {
 
     @Override
-    public List<AssentoDTO> buscarAssento(SalaDeExibicaoDTO sala) {
-        String sql = "SELECT id_assento, posicao_assento, reservado FROM bilheteria.assento WHERE numero_sala = ?";
+    public void adicionarAssento(AssentoDTO assento) {
+        String sql = "INSERT INTO bilheteria.assento (numero_sala, posicao_assento, reservado) VALUES (?, ?, ?)";
+    
+        try (Connection conn = ConexaoBancoDeDados.conectar();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, assento.getSalaDeExibicao().getNumeroDaSala());
+            pstmt.setInt(2, assento.getPosicao());
+            pstmt.setBoolean(3, assento.isReservado());
+    
+            pstmt.executeUpdate();
+    
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<AssentoDTO> buscarAssento(AssentoDTO assento) {
+        String sql = "SELECT posicao_assento, reservado FROM bilheteria.assento WHERE numero_sala = ?";
         List<AssentoDTO> assentos = new ArrayList<>();
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, sala.getNumeroDaSala());
+            pstmt.setInt(1, assento.getPosicao());
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    AssentoDTO assentoDTO = new AssentoDTO();
-                    assentoDTO.setId(rs.getLong("id_assento"));
-                    assentoDTO.setPosicao(rs.getInt("posicao_assento"));
-                    assentoDTO.setReservado(rs.getBoolean("reservado"));
-                    assentoDTO.setSalaDeExibicao(sala);
-                    assentos.add(assentoDTO);
+                    AssentoDTO lugares = new AssentoDTO();
+                    lugares.setPosicao(rs.getInt("posicao_assento"));
+                    lugares.setReservado(rs.getBoolean("reservado"));
+                    assentos.add(lugares);
                 }
             }
 
@@ -37,5 +51,5 @@ public class AssentoDAOImpl implements AssentoDAO {
         }
 
         return assentos;
-    }
+    }  
 }

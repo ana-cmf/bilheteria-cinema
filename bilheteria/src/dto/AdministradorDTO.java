@@ -1,15 +1,19 @@
 package dto;
 
 public class AdministradorDTO {
-    private static AdministradorDTO instancia;
     private String nomeUsuario;
     private String senha;
-
-    public static AdministradorDTO getInstancia(){
-        return instancia;
-    }
+    
   
-    public String getNomeUsuario() {
+    public AdministradorDTO(String nomeUsuario, String senha) {
+		this.nomeUsuario = nomeUsuario;
+		this.senha = senha;
+	}
+    public AdministradorDTO() {
+    	
+    }
+
+	public String getNomeUsuario() {
         return nomeUsuario;
     }
   

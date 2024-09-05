@@ -10,7 +10,17 @@ public class ExibicaoDTO {
     private LocalDateTime horario; 
        
     
-    public FilmeDTO getFilme() {
+    public ExibicaoDTO(Long id, FilmeDTO filme, SalaDeExibicaoDTO salaDeExibicao, boolean legendado,LocalDateTime horario) {
+		this.id = id;
+		this.filme = filme;
+		this.salaDeExibicao = salaDeExibicao;
+		this.legendado = legendado;
+		this.horario = horario;
+	}
+    public ExibicaoDTO() {
+    	
+    }
+	public FilmeDTO getFilme() {
         return filme;
     }
     public void setFilme(FilmeDTO filme) {

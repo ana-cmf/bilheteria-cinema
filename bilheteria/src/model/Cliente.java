@@ -1,13 +1,15 @@
 package model;
 
+import dto.ClienteDTO;
+import java.util.List;
 import model.execption.CpfInvalidoException;
 import model.execption.EmailInvalidoException;
 public class Cliente{
     private String nomeCompleto;
     private String CPF;
     private String email;
-    private int idade;
-
+    private List<Ingresso> ingressos;
+    
 
     public String getNomeCompleto() {
         return nomeCompleto;
@@ -41,12 +43,32 @@ public class Cliente{
         }
         this.email = email;
     }
-
-    public int getIdade() {
-        return idade;
+    @Override
+    public String toString() {
+        return String.format("Cliente{Nome Completo='%s', CPF='%s', Email='%s'}",
+                nomeCompleto, CPF, email);
+    }
+    public static Cliente fromDTO(ClienteDTO dto) throws EmailInvalidoException, CpfInvalidoException {
+        Cliente cliente = new Cliente();
+        cliente.setNomeCompleto(dto.getNomeCompleto());
+        cliente.setEmail(dto.getEmail());
+        cliente.setCPF(dto.getCPF());
+        return cliente;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public ClienteDTO toDTO() {
+        ClienteDTO dto = new ClienteDTO();
+        dto.setNomeCompleto(this.nomeCompleto);
+        dto.setEmail(this.email);
+        dto.setCPF(this.CPF);
+        return dto;
+    }
+
+    public List<Ingresso> getIngressos() {
+        return ingressos;
+    }
+
+    public void setIngressos(List<Ingresso> ingressos) {
+        this.ingressos = ingressos;
     }
 }

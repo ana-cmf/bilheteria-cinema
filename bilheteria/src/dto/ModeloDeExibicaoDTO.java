@@ -1,20 +1,17 @@
 package dto;
 
-import model.ModeloDeExibicao;
-
 public class ModeloDeExibicaoDTO {
-    private ModeloDeExibicaoDTO modelodto;
-    private ModeloDeExibicao modelo;
+    private String  modelo;
 
     public ModeloDeExibicaoDTO(){
-        this.modelodto=ModeloDeExibicao._2D;
+        this.modelo="2D";
 
     }
-    public ModeloDeExibicaoDTO getModelo2D() {
-        return modelo2D;
+    public String getModelo() {
+        return modelo;
     }
-    public void setModelo2D(ModeloDeExibicaoDTO modelo2d) {
-        modelo2D = modelo2d;
+    public void setModelo(String modelo) {
+    	this.modelo = modelo;
     }
     public ModeloDeExibicaoDTO getModelo3D() {
         return modelo3D;

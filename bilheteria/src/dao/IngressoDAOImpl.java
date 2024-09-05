@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import dto.IngressoDTO;
 
 public class IngressoDAOImpl implements IngressoDAO {
@@ -12,7 +13,7 @@ public class IngressoDAOImpl implements IngressoDAO {
         String sql = "INSERT INTO bilheteria.filme (id_ingresso, preco_ingresso, pagamento_realizado_ingresso, id_tipo_entrada, id_exibicao, id_assento) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setLong(1, ingresso.getId());
             pstmt.setFloat(2, ingresso.getPreco());
@@ -32,6 +33,7 @@ public class IngressoDAOImpl implements IngressoDAO {
         try (Connection conn = ConexaoBancoDeDados.conectar();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
        
+    
         } catch (SQLException e) {
             e.printStackTrace();
         }

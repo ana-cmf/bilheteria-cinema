@@ -1,23 +1,25 @@
 package dto;
 
+import model.Assento;
+
 public class SalaDeExibicaoDTO {
     private int numeroDaSala;
     private ModeloDeExibicaoDTO modeloDeExibicao;
     private int quantidadeDeAssentos;
     private AssentoDTO[] assentos = new AssentoDTO[40];
-
-    public SalaDeExibicaoDTO( ){
+	 public SalaDeExibicaoDTO( ){
         this.assentos = new AssentoDTO[40];
         this.quantidadeDeAssentos=assentos.length;
-        criarAssento();
+        criarAssento(quantidadeDeAssentos);
 
     }
 
-    public void  criarAssento(){
-        for (int i=0; i<assentos.length; i++) {
-            assentos[i]=new AssentoDTO();
-            assentos[i].setPosicao(i+1);
+        private Assento[] criarAssento(int quantidadeDeAssentos) {
+        Assento[] assentos = new Assento[quantidadeDeAssentos];
+        for (int i = 0; i < quantidadeDeAssentos; i++) {
+            assentos[i] = new Assento(); // Inicializa cada assento
         }
+        return assentos;
     }
 
     public int getNumeroDaSala() {

@@ -1,5 +1,6 @@
 package model;
 
+import dto.AssentoDTO;
 import model.execption.AssentoJaReservadoException;
 
 public class Assento {
@@ -7,7 +8,7 @@ public class Assento {
     private int posicao;
     private boolean reservado;
     
-    public Assento(){
+    public Assento(int posicao){
         this.posicao = posicao;
         this.reservado = false;
     }
@@ -34,17 +35,32 @@ public class Assento {
     public void setReservado(boolean reservado) {
         this.reservado = reservado;
     }
-    public void reservar() throws AssentoJaReservadoException {
-        if (reservado) {
+    public void reservarAssento() throws AssentoJaReservadoException {
+        if (reservado == true) {
             throw new AssentoJaReservadoException();
         }
         reservado = true;
     }
-    public void reservarAssento(Assento numeroAssento) throws AssentoJaReservadoException {
-        if(numeroAssento.isReservado() == true){
-            throw new AssentoJaReservadoException();
-        }else{
-            numeroAssento.reservar();
-        }
+    @Override
+    public String toString() {
+        return String.format(
+            "Assento{ID=%d, Posição=%d, Reservado=%s}",
+            id, posicao, reservado ? "Sim" : "Não"
+        );
+}
+public static Assento fromDTO(AssentoDTO dto) {
+        Assento assento = new Assento();
+        assento.setId(dto.getId());
+        assento.setPosicao(dto.getPosicao());
+        assento.setReservado(dto.isReservado());
+        return assento;
+    }
+
+    public AssentoDTO toDTO() {
+        AssentoDTO dto = new AssentoDTO();
+        dto.setId(this.id);
+        dto.setPosicao(this.posicao);
+        dto.setReservado(this.reservado);
+        return dto;
     }
 }
