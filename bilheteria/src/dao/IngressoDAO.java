@@ -6,5 +6,4 @@ public interface IngressoDAO {
 
     public void adicionarIngresso(IngressoDTO ingresso);
     public void excluirIngresso(IngressoDTO ingresso);
-
 }

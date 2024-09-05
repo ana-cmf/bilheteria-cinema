@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import dao.execao.SalaDeExibicaoNaoEncontradaException;
+import java.util.ArrayList;
+import java.util.List;
+
+import dao.exception.SalaDeExibicaoNaoEncontradaException;
 import dto.SalaDeExibicaoDTO;
 
-public class SalaDeExibicaoImpl implements SalaDeExibicaoDAO {
+public class SalaDeExibicaoDAOImpl implements SalaDeExibicaoDAO {
 
     public void cadastrarSalaExibicao(SalaDeExibicaoDTO sala) {
         String sql = "INSERT INTO bilheteria.sala_exibicao (numero_sala, quantidade_assentos) VALUES (?, ?)";
@@ -15,7 +18,7 @@ public class SalaDeExibicaoImpl implements SalaDeExibicaoDAO {
         try (Connection conn = ConexaoBancoDeDados.conectar();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, sala.getNumeroDaSala());
-            pstmt.setInt(3, sala.getQuantidadeDeAssentos());
+            pstmt.setInt(2, sala.getQuantidadeDeAssentos());
 
             pstmt.executeUpdate();
 
@@ -61,5 +64,23 @@ public class SalaDeExibicaoImpl implements SalaDeExibicaoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }  
+    }
+
+    @Override
+    public List<SalaDeExibicaoDTO> listarTodasSalasDeExibicao() throws SQLException {
+        String sql = "SELECT * FROM bilheteria.sala_exibicao";
+        List<SalaDeExibicaoDTO> salas = new ArrayList<>();
+
+        try (Connection conn = ConexaoBancoDeDados.conectar();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                SalaDeExibicaoDTO sala = new SalaDeExibicaoDTO();
+                sala.setNumeroDaSala(rs.getInt("numero_sala"));
+                salas.add(sala);
+            }
+        }
+        return salas;
+    }
 }

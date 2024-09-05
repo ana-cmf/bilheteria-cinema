@@ -1,26 +1,36 @@
 package dao;
 
-import dto.AdministradorDTO;
+import dto.AssentoDTO;
+import dto.SalaDeExibicaoDTO;
 import java.util.Scanner;
 
 public class TestaInformacoesBancoDeDados {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Digite o nome de usuário: ");
-        String nomeUsuario = scanner.nextLine();
+    /*  Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Digite a senha: ");
-        String senha = scanner.nextLine();
+        System.out.print("Digite o número da sala de exibição: ");
+        int numeroSala = scanner.nextInt();
 
-        AdministradorDTO administrador = new AdministradorDTO();
-        administrador.setNomeUsuario(nomeUsuario);
-        administrador.setSenha(senha);
+        SalaDeExibicaoDTO salaDeExibicao = new SalaDeExibicaoDTO();
+        salaDeExibicao.setNumeroDaSala(numeroSala);
 
-        AdministradorDAOImpl dao = new AdministradorDAOImpl();
-        dao.cadastrarAdministrador(administrador);
-        dao.buscarAdminstrador();
-        
+        System.out.print("Digite a posição do assento: ");
+        int posicaoAssento = scanner.nextInt();
+
+        System.out.print("O assento está reservado? (true/false): ");
+        boolean reservado = scanner.nextBoolean();
+
+        AssentoDTO assento = new AssentoDTO();
+        assento.setPosicao(posicaoAssento);
+        assento.setReservado(reservado);
+        assento.setSalaDeExibicao(salaDeExibicao);
+
+        AssentoDAOImpl assentoDAO = new AssentoDAOImpl();
+        assentoDAO.adicionarAssento(assento);
+
         scanner.close();
+
+        */ 
     }
 }

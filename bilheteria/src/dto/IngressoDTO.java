@@ -1,13 +1,34 @@
 package dto;
 
 public class IngressoDTO {
+    private Long id;
     private ExibicaoDTO exibicao;
     private AssentoDTO assento;
     private ClienteDTO cliente;
     private float preco;
     private TipoDeEntradaDTO tipoDeEntrada;
+    private FormaDePagamentoDTO formaDePagamento;
     private boolean pagamentoRealizado;
 
+    public IngressoDTO(Long id, ExibicaoDTO exibicao, AssentoDTO assento, ClienteDTO cliente, float preco,TipoDeEntradaDTO tipoDeEntrada, FormaDePagamentoDTO formaDePagamento, boolean pagamentoRealizado) {
+		this.id = id;
+		this.exibicao = exibicao;
+		this.assento = assento;
+		this.cliente = cliente;
+		this.preco = preco;
+		this.tipoDeEntrada = tipoDeEntrada;
+		this.formaDePagamento = formaDePagamento;
+		this.pagamentoRealizado = pagamentoRealizado;
+	}
+    public IngressoDTO() {
+    	
+    }
+	public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
     public IngressoDTO(TipoDeEntradaDTO tipoDeEntrada) {
         this.tipoDeEntrada = tipoDeEntrada;
     }
@@ -35,12 +56,7 @@ public class IngressoDTO {
     public void setPreco(float preco) {
         this.preco = preco;
     }
-    public FormaDePagamentoDTO getFormaDePagamento() {
-        return formaDePagamento;
-    }
-    public void setFormaDePagamento(FormaDePagamentoDTO formaDePagamento) {
-        this.formaDePagamento = formaDePagamento;
-    }
+    
     public TipoDeEntradaDTO getTipoDeEntrada() {
         return tipoDeEntrada;
     }
@@ -52,5 +68,11 @@ public class IngressoDTO {
     }
     public void setPagamentoRealizado(boolean pagamentoRealizado) {
         this.pagamentoRealizado = pagamentoRealizado;
+    }
+    public FormaDePagamentoDTO getFormaDePagamento() {
+        return formaDePagamento;
+    }
+    public void setFormaDePagamento(FormaDePagamentoDTO formaDePagamento) {
+        this.formaDePagamento = formaDePagamento;
     }
 }

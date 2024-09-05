@@ -6,7 +6,16 @@ public class FuncionarioDTO {
     private String senha;
     private String email;
     
-    public String getNomeCompleto() {
+    public FuncionarioDTO(String nomeCompleto, String cpf, String senha, String email) {
+		this.nomeCompleto = nomeCompleto;
+		this.CPF = cpf;
+		this.senha = senha;
+		this.email = email;
+	}
+    public FuncionarioDTO() {
+    	
+    }
+	public String getNomeCompleto() {
         return nomeCompleto;
     }
     public void setNomeCompleto(String nomeCompleto) {

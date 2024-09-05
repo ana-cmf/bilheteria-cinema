@@ -1,14 +1,25 @@
 package dto;
 
+import java.util.List;
+import model.Ingresso;
+
 public class ClienteDTO {
 
     private String nomeCompleto;
     private String CPF;
     private String email;
-    private int idade;
+    private List<Ingresso> ingressos;
 
 
-    public String getNomeCompleto() {
+    public ClienteDTO(String nomeCompleto, String cPF, String email, int idade) {
+		this.nomeCompleto = nomeCompleto;
+		CPF = cPF;
+		this.email = email;
+    	}
+    public ClienteDTO() {
+    	
+    }
+	public String getNomeCompleto() {
         return nomeCompleto;
     }
     public void setNomeCompleto(String nomeCompleto) {
@@ -26,10 +37,11 @@ public class ClienteDTO {
     public void setEmail(String email) {
         this.email = email;
     }
-    public int getIdade() {
-        return idade;
+    public List<Ingresso> getIngressos() {
+        return ingressos;
     }
-    public void setIdade(int idade) {
-        this.idade = idade;
+
+    public void setIngressos(List<Ingresso> ingressos) {
+        this.ingressos = ingressos;
     }
 }
