@@ -3,10 +3,13 @@ package controller;
 import dao.AdministradorDAO;
 import dao.AdministradorDAOImpl;
 import dto.AdministradorDTO;
+import execption.SenhaInvalidaException;
 import model.execption.SenhaInvalidaException;
-import model.Administrador;
+import model.Administrado;
 import view.TelaCadastroAdministrador;
 import view.TelaLogin;
+
+public class AdministradorController {
 
 
 public class AdministradorController {
@@ -36,8 +39,8 @@ public class AdministradorController {
             telaCadastro.mudarParaTelaDeLogin();
         } catch (SenhaInvalidaException e) {
             telaCadastro.mostrarMensagensDeErroDaSenha();
-        }
-    }
+       }
+       }
 
     public void autenticarAdministrador(AdministradorDTO dto){
         if(adminDAO.autenticarAdministrador(dto)){
