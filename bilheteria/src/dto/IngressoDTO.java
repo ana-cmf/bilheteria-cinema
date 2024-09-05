@@ -35,12 +35,6 @@ public class IngressoDTO {
     public void setPreco(float preco) {
         this.preco = preco;
     }
-    public FormaDePagamentoDTO getFormaDePagamento() {
-        return formaDePagamento;
-    }
-    public void setFormaDePagamento(FormaDePagamentoDTO formaDePagamento) {
-        this.formaDePagamento = formaDePagamento;
-    }
     public TipoDeEntradaDTO getTipoDeEntrada() {
         return tipoDeEntrada;
     }
