@@ -41,13 +41,18 @@ public class TelaInicialAdministrador extends JFrame{
     private JPanel listaDosFuncionarios;
     private JPanel listaDosClientes;
 
-    private JPanel informacoesSala;
+    private JPanel formularioEdicao;
+    private JComboBox<Integer> campoNumeroSala;
+    private JComboBox<Integer> campoQuantidadeAssentos;
+    private JComboBox<String> campoModeloExibicao;
     
     public TelaInicialAdministrador(){
         adicionarMenu();
         adicionarBotaoLogin();
         adicionarCaixaDePesquisa();
         adicionarListaDeSalas();
+        moverPainelParaEsquerda(listaDasSalas);
+        adicionarFormularioEdicao();
         criarTela();
         repaint();
     }
@@ -243,7 +248,7 @@ public class TelaInicialAdministrador extends JFrame{
         tituloFilmes.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         tituloFilmes.setHorizontalAlignment(SwingConstants.CENTER);
         tituloFilmes.setVisible(true);
-
+        
         this.listaDosFilmes = new JPanel();
         listaDosFilmes.setBounds(margemEsquerdaBotoes,200,larguraListaBotoes,alturaListaBotoes+100);
         listaDosFilmes.setVisible(true);
@@ -299,7 +304,7 @@ public class TelaInicialAdministrador extends JFrame{
         listaDasSalas.add(painelBarraDeRolagem);
         add(listaDasSalas);
     }
-
+    
     public void adicionarListaDeFuncionarios(){
         
         this.funcionarios = new ArrayList<FuncionarioDTO>();
@@ -340,7 +345,7 @@ public class TelaInicialAdministrador extends JFrame{
         tituloFilmes.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         tituloFilmes.setHorizontalAlignment(SwingConstants.CENTER);
         tituloFilmes.setVisible(true);
-
+        
         this.listaDasSalas = new JPanel();
         listaDasSalas.setBounds(margemEsquerdaBotoes,200,larguraListaBotoes,alturaListaBotoes+100);
         listaDasSalas.setVisible(true);
@@ -348,16 +353,88 @@ public class TelaInicialAdministrador extends JFrame{
         listaDasSalas.add(painelBarraDeRolagem);
         add(listaDasSalas);
     }
-
-    public void detalharSala(){
-        this.salaDTO = new SalaDeExibicaoDTO();
-        salaDTO.setNumeroDaSala(1);
-        salaDTO.setQuantidadeDeAssentos(40);
-
-        this.informacoesSala = new JPanel();
+    
+    public void adicionarFormularioEdicao(){
+        this.formularioEdicao = new JPanel();
+        //formularioEdicao.setLayout(null);
         
+        int margemEsquerda;
+        int margemSuperior;
+        int largura;
+        int altura;
+        margemEsquerda = (int) (tamanhoDaTela().getWidth()/2); 
+        margemSuperior = (int) (tamanhoDaTela().getHeight()/5);
+        largura = (int) (margemEsquerda*0.75);
+        altura = (int) (tamanhoDaTela().getHeight()*0.75);
+        formularioEdicao.setBounds(margemEsquerda, margemSuperior, largura, altura);
+        
+        JLabel tituloEdicao = new JLabel("Editar Sala");
+        tituloEdicao.setFont(new Font("Futura", Font.BOLD, 20));
+        tituloEdicao.setBounds(0, 30, largura, 50);
+        tituloEdicao.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        int alturaComponentes = 20;
+        int larguraComponentes = largura/2;
+        int XComponentes = largura/4;
+        int espaco = 20;
+        Font fonteFormulario = new Font("Futura", Font.BOLD, 14);
+        JLabel numeroSala = new JLabel("Número da sala:");
+        numeroSala.setFont(fonteFormulario);
+        numeroSala.setForeground(Color.WHITE);
+        numeroSala.setBounds(largura/4, altura/3, larguraComponentes, alturaComponentes);
+        
+        int numMaximoSala = 999;
+        Integer[] numeros = new Integer[numMaximoSala];
+        for (int i = 0; i < numeros.length; i++) {
+            numeros[i] = i+1;
+        }
+        
+        this.campoNumeroSala = new JComboBox<>(numeros);
+        campoNumeroSala.setBounds(XComponentes, altura/4, larguraComponentes, alturaComponentes);
+        campoNumeroSala.setName("Número da sala: ");
+        campoNumeroSala.setVisible(true);
+        
+        int maximoAssentos = 40;
+        Integer[] quantidades = new Integer[maximoAssentos];
+        for (int index = 0; index < quantidades.length; index++) {
+            quantidades[index] = index+1;
+            
+        }
+        this.campoQuantidadeAssentos = new JComboBox<>(quantidades);
+        campoQuantidadeAssentos.setBounds(XComponentes, campoNumeroSala.getY()+alturaComponentes+espaco, larguraComponentes, alturaComponentes);
+        campoQuantidadeAssentos.setName("Quantidade de assentos: ");
+        campoQuantidadeAssentos.setVisible(true);
+        
+        this.campoModeloExibicao = new JComboBox<>(new String[]{"2D", "3D"});
+        campoModeloExibicao.setBounds(XComponentes, altura/4, larguraComponentes, alturaComponentes);
+        campoModeloExibicao.setName("Número da sala: ");
+        campoModeloExibicao.setVisible(true);
+        //campoNumeroSala.setSelectedItem(salaDTO.getNumeroDaSala());
+        
+        JPanel conteiner = new JPanel();
+        conteiner.setLayout(null);
+        //conteiner.setBounds(margemEsquerda, margemSuperior, largura, altura);
+        conteiner.add(tituloEdicao);
+        conteiner.add(campoNumeroSala);
+        conteiner.add(campoQuantidadeAssentos);
+        conteiner.add(campoModeloExibicao);
+        
+        JScrollPane painelBarraDeRolagem = new JScrollPane();
+        painelBarraDeRolagem.setViewportView(conteiner);
+        painelBarraDeRolagem.setAlignmentX(CENTER_ALIGNMENT);
+        
+        altura = altura - tituloEdicao.getY();
+        painelBarraDeRolagem.setBounds(margemEsquerda, margemSuperior, largura, altura);
+        painelBarraDeRolagem.setPreferredSize(new Dimension(largura, altura));
+        //painelBarraDeRolagem.setBorder(null);
+        conteiner.setBounds(margemEsquerda, margemSuperior, largura, altura);
+        conteiner.setVisible(true);
+        painelBarraDeRolagem.setVisible(true);
+        formularioEdicao.setVisible(true);
+        formularioEdicao.add(painelBarraDeRolagem);
+        add(formularioEdicao);
     }
-
+    
     public Color adicionarCor(int num1, int num2, int num3) {
         float[] cor = new float[3];
 		cor = Color.RGBtoHSB(num1, num2, num3, cor);
@@ -373,34 +450,34 @@ public class TelaInicialAdministrador extends JFrame{
         new TelaInicialAdministrador();
     }
     
-        public JButton getBotaoLogin() {
-            return botaoLogin;
-        }
+    public JButton getBotaoLogin() {
+        return botaoLogin;
+    }
     
-        public void setBotaoLogin(JButton botaoLogin) {
-            this.botaoLogin = botaoLogin;
-        }
+    public void setBotaoLogin(JButton botaoLogin) {
+        this.botaoLogin = botaoLogin;
+    }
     
-        public JMenuItem getMenuSalas() {
-            return menuSalas;
-        }
+    public JMenuItem getMenuSalas() {
+        return menuSalas;
+    }
     
-        public void setMenuSalas(JMenuItem menuSalas) {
-            this.menuSalas = menuSalas;
-        }
+    public void setMenuSalas(JMenuItem menuSalas) {
+        this.menuSalas = menuSalas;
+    }
     
-        public JMenuItem getMenuExibicoes() {
-            return menuExibicoes;
-        }
+    public JMenuItem getMenuExibicoes() {
+        return menuExibicoes;
+    }
     
-        public void setMenuExibicoes(JMenuItem menuExibicoes) {
-            this.menuExibicoes = menuExibicoes;
+    public void setMenuExibicoes(JMenuItem menuExibicoes) {
+        this.menuExibicoes = menuExibicoes;
         }
-    
+        
         public JMenuItem getMenuFilmes() {
             return menuFilmes;
         }
-    
+        
         public void setMenuFilmes(JMenuItem menuFilmes) {
             this.menuFilmes = menuFilmes;
         }
