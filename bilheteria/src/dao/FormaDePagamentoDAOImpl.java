@@ -2,9 +2,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import dto.FormaDePagamentoDTO;
-import model.CartaoDeCredito;
 
 public class FormaDePagamentoDAOImpl implements FormaDePagamentoDAO {
 
