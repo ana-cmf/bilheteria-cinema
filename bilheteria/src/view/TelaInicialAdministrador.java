@@ -1,18 +1,33 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.ArrayList;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import dto.ExibicaoDTO;
 import dto.FilmeDTO;
 import dto.FuncionarioDTO;
 import dto.SalaDeExibicaoDTO;
-import model.Funcionario;
 
 public class TelaInicialAdministrador extends JFrame {
 
@@ -40,22 +55,30 @@ public class TelaInicialAdministrador extends JFrame {
     private JPanel listaDosFuncionarios;
     private JPanel listaDosClientes;
 
-    private JPanel formularioEdicao;
+    private JPanel formularioEdicaoSala;
     private JComboBox<Integer> campoNumeroSala;
     private JComboBox<Integer> campoQuantidadeAssentos;
     private JComboBox<String> campoModeloExibicao;
     private JButton botaoSalvarMudancas;
+    
+    private JPanel formularioEdicaoFilme;
 
     private JButton botaoEditar;
     private JButton botaoExcluir;
     private JButton botaoCriar;
+    private JLabel tituloFormulario;
+    private JTextField campoTituloFilme;
+    private JComboBox<Integer> campoTempo;
+    private JTextArea campoSinopse;
+    private JTextField campoGenero;
+    private JComboBox campoClassificacaoIndicativa;
 
     public TelaInicialAdministrador() {
         adicionarMenu();
         adicionarBotaoLogin();
         adicionarCaixaDePesquisa();
-        adicionarListaDeSalas();
         adicionarBotoesDeEdicao();
+        adicionarFormularioEdicaoFilme();
         criarTela();
         repaint();
     }
@@ -63,6 +86,7 @@ public class TelaInicialAdministrador extends JFrame {
     public void criarTela() {
         setIconImage(Imagens.ICONE_TOPO_DA_JANELA);
         setTitle("Absolute Cinema");
+        getContentPane().setBackground(Color.LIGHT_GRAY);
         setLayout(null);
         setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
@@ -452,9 +476,8 @@ public class TelaInicialAdministrador extends JFrame {
         add(botoesEdicao);
     }
 
-    public void adicionarFormularioEdicao() {
-        this.formularioEdicao = new JPanel();
-        //formularioEdicao.setLayout(null);
+    public void adicionarFormularioEdicaoSala() {
+        this.formularioEdicaoSala = new JPanel();
 
         int margemEsquerda;
         int margemSuperior;
@@ -464,12 +487,12 @@ public class TelaInicialAdministrador extends JFrame {
         margemSuperior = (int) (tamanhoDaTela().getHeight() / 5);
         largura = (int) (margemEsquerda * 0.75);
         altura = (int) (tamanhoDaTela().getHeight() * 0.75);
-        formularioEdicao.setBounds(margemEsquerda, margemSuperior, largura, altura);
+        formularioEdicaoSala.setBounds(margemEsquerda, margemSuperior, largura, altura);
 
-        JLabel tituloEdicao = new JLabel("Editar Sala");
-        tituloEdicao.setFont(new Font("Futura", Font.BOLD, 20));
-        tituloEdicao.setBounds(0, 30, largura, 50);
-        tituloEdicao.setHorizontalAlignment(SwingConstants.CENTER);
+        this.tituloFormulario = new JLabel("Nova sala de exibição");
+        tituloFormulario.setFont(new Font("Futura", Font.BOLD, 20));
+        tituloFormulario.setBounds(0, 30, largura, 50);
+        tituloFormulario.setHorizontalAlignment(SwingConstants.CENTER);
 
         int alturaComponentes = 20;
         int larguraComponentes = largura/2;
@@ -479,7 +502,7 @@ public class TelaInicialAdministrador extends JFrame {
         Font fonteFormulario = new Font("Futura", Font.BOLD, 14);
         JLabel numeroSala = new JLabel("Número da sala:");
         numeroSala.setFont(fonteFormulario);
-        numeroSala.setBounds(XComponentes, tituloEdicao.getY() + 50 + espaco, larguraComponentes,
+        numeroSala.setBounds(XComponentes, tituloFormulario.getY() + 50 + espaco, larguraComponentes,
                 alturaComponentes);
 
         int numMaximoSala = 999;
@@ -520,7 +543,7 @@ public class TelaInicialAdministrador extends JFrame {
         campoModeloExibicao.setVisible(true);
         // campoNumeroSala.setSelectedItem(salaDTO.getNumeroDaSala());
         
-        altura = altura - tituloEdicao.getY();// - botaoSalvarMudancas.getHeight() - espaco;
+        altura = altura - tituloFormulario.getY();// - botaoSalvarMudancas.getHeight() - espaco;
         this.botaoSalvarMudancas = criarBotaoVermelho();
         botaoSalvarMudancas.setText("Salvar");
         botaoSalvarMudancas.setBounds(espaco, altura-30-espaco, 100, 30);
@@ -528,7 +551,7 @@ public class TelaInicialAdministrador extends JFrame {
 
         JPanel conteiner = new JPanel();
         conteiner.setLayout(null);
-        conteiner.add(tituloEdicao);
+        conteiner.add(tituloFormulario);
         conteiner.add(numeroSala);
         conteiner.add(campoNumeroSala);
         conteiner.add(quantidadeAssentos);
@@ -547,9 +570,133 @@ public class TelaInicialAdministrador extends JFrame {
         conteiner.setBounds(margemEsquerda, margemSuperior, largura, altura);
         conteiner.setVisible(true);
         painelBarraDeRolagem.setVisible(true);
-        formularioEdicao.setVisible(true);
-        formularioEdicao.add(painelBarraDeRolagem);
-        add(formularioEdicao);
+        formularioEdicaoSala.setVisible(true);
+        formularioEdicaoSala.add(painelBarraDeRolagem);
+        add(formularioEdicaoSala);
+    }
+    
+    public void adicionarFormularioEdicaoFilme(){
+        this.formularioEdicaoFilme = new JPanel();
+
+        int margemEsquerda;
+        int margemSuperior;
+        int largura;
+        int altura;
+        margemEsquerda = (int) (tamanhoDaTela().getWidth() / 2);
+        margemSuperior = (int) (tamanhoDaTela().getHeight() / 5);
+        largura = (int) (margemEsquerda * 0.75);
+        altura = (int) (tamanhoDaTela().getHeight() * 0.75);
+        formularioEdicaoFilme.setBounds(margemEsquerda, margemSuperior, largura, altura);
+
+        this.tituloFormulario = new JLabel("Novo Filme");
+        tituloFormulario.setFont(new Font("Futura", Font.BOLD, 20));
+        tituloFormulario.setBounds(0, 30, largura, 50);
+        tituloFormulario.setHorizontalAlignment(SwingConstants.CENTER);
+
+        int alturaComponentes = 20;
+        int larguraComponentes = largura/2;
+        int XComponentes = largura/4;
+        int espaco = 20;
+
+        Font fonteFormulario = new Font("Futura", Font.BOLD, 14);
+        JLabel tituloFilme = new JLabel("Título:");
+        tituloFilme.setFont(fonteFormulario);
+        tituloFilme.setBounds(XComponentes, tituloFormulario.getY() + 50 + espaco, larguraComponentes,
+                alturaComponentes);
+
+        this.campoTituloFilme = new JTextField();
+        campoTituloFilme.setBounds(XComponentes, tituloFilme.getY() + alturaComponentes + espaco, larguraComponentes,
+                alturaComponentes);
+        campoTituloFilme.setBorder(null);
+        campoTituloFilme.setVisible(true);
+
+        JLabel generoFilme = new JLabel("Gênero:");
+        generoFilme.setFont(fonteFormulario);
+        generoFilme.setBounds(XComponentes, campoTituloFilme.getY() + alturaComponentes + espaco, larguraComponentes,
+                alturaComponentes);
+
+        this.campoGenero = new JTextField();
+        campoGenero.setBounds(XComponentes, generoFilme.getY() + alturaComponentes + espaco, larguraComponentes,
+                alturaComponentes);
+                campoGenero.setBorder(null);
+                campoGenero.setVisible(true);
+
+        JLabel sinopseFilme = new JLabel("Sinopse:");
+        sinopseFilme.setFont(fonteFormulario);
+        sinopseFilme.setBounds(XComponentes, campoGenero.getY() + alturaComponentes + espaco, larguraComponentes,
+                alturaComponentes);
+
+        this.campoSinopse = new JTextArea();
+        campoSinopse.setBounds(XComponentes, sinopseFilme.getY() + alturaComponentes + espaco, larguraComponentes,
+                50);
+                campoSinopse.setEditable(true);
+                campoSinopse.setLineWrap(true);
+                campoSinopse.setVisible(true);
+
+        JLabel tempo = new JLabel("Tempo de duração em minutos:");
+        tempo.setFont(fonteFormulario);
+        tempo.setBounds(XComponentes, campoSinopse.getY() + campoSinopse.getHeight() + espaco, larguraComponentes, alturaComponentes);
+        
+        int tempoMaximo = 999;
+        Integer[] quantidades = new Integer[tempoMaximo];
+        for (int index = 0; index < quantidades.length; index++) {
+            quantidades[index] = index + 1;
+            
+        }
+        
+        this.campoTempo = new JComboBox<>(quantidades);
+        campoTempo.setBounds(XComponentes, tempo.getY() + alturaComponentes + espaco, larguraComponentes, alturaComponentes);
+        campoTempo.setVisible(true);
+        
+        JLabel classificacaoIndicativa = new JLabel("Tempo de duração em minutos:");
+        classificacaoIndicativa.setFont(fonteFormulario);
+        classificacaoIndicativa.setBounds(XComponentes, campoTempo.getY() + alturaComponentes + espaco, larguraComponentes, alturaComponentes);
+
+        int limiteClassificacao = 19;
+        Integer[] idades = new Integer[limiteClassificacao];
+        for (int index = 0; index < quantidades.length; index++) {
+            quantidades[index] = index + 1;
+
+        }
+
+        this.campoClassificacaoIndicativa = new JComboBox<>(quantidades);
+        campoClassificacaoIndicativa.setBounds(XComponentes, classificacaoIndicativa.getY() + alturaComponentes + espaco, larguraComponentes, alturaComponentes);
+        campoClassificacaoIndicativa.setVisible(true);
+        
+        altura = altura - tituloFormulario.getY();// - botaoSalvarMudancas.getHeight() - espaco;
+        this.botaoSalvarMudancas = criarBotaoVermelho();
+        botaoSalvarMudancas.setText("Salvar");
+        botaoSalvarMudancas.setBounds(espaco, altura-30-espaco, 100, 30);
+        botaoSalvarMudancas.setVisible(true);
+
+        JPanel conteiner = new JPanel();
+        conteiner.setLayout(null);
+        conteiner.add(tituloFormulario);
+        conteiner.add(tituloFilme);
+        conteiner.add(campoTituloFilme);
+        conteiner.add(generoFilme);
+        conteiner.add(campoGenero);
+        conteiner.add(sinopseFilme);
+        conteiner.add(campoSinopse);
+        conteiner.add(tempo);
+        conteiner.add(campoTempo);
+        conteiner.add(classificacaoIndicativa);
+        conteiner.add(campoClassificacaoIndicativa);
+        conteiner.add(botaoSalvarMudancas);
+        
+        JScrollPane painelBarraDeRolagem = new JScrollPane();
+        painelBarraDeRolagem.setViewportView(conteiner);
+        painelBarraDeRolagem.setAlignmentX(CENTER_ALIGNMENT);
+        
+        painelBarraDeRolagem.setBounds(margemEsquerda, margemSuperior, largura, altura);
+        painelBarraDeRolagem.setPreferredSize(new Dimension(largura, altura));
+        painelBarraDeRolagem.setBorder(null);
+        conteiner.setBounds(margemEsquerda, margemSuperior, largura, altura);
+        conteiner.setVisible(true);
+        painelBarraDeRolagem.setVisible(true);
+        formularioEdicaoFilme.setVisible(true);
+        formularioEdicaoFilme.add(painelBarraDeRolagem);
+        add(formularioEdicaoFilme);   
     }
 
     public Color adicionarCor(int num1, int num2, int num3) {

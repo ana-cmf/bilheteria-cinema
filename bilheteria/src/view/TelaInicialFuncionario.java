@@ -147,6 +147,10 @@ public class TelaInicialFuncionario extends JFrame{
 		cor = Color.RGBtoHSB(num1, num2, num3, cor);
 		return Color.getHSBColor(cor[0], cor[1], cor[2]);
 	}
+
+    public static void main(String[] args) {
+        new TelaInicialFuncionario();
+    }
     
     public Dimension tamanhoDaTela() {
         Toolkit t = Toolkit.getDefaultToolkit();
