@@ -34,23 +34,26 @@ public class MainTeste {
         exibicao.setHorario(LocalDateTime.of(2024, 9, 4, 19, 30));
         exibicao.setLegendado(true);
         exibicao.setSalaDeExibicao(sala);
+        sala.setAssentos(sala.getAssentos());
+
 
         Assento assento = new Assento();
         assento.setPosicao(40);
+
 
         Ingresso ingresso = new Ingresso();
         ingresso.setExibicao(exibicao);
         ingresso.setCliente(cliente);
         ingresso.setAssento(assento);
         ingresso.setTipoDeEntrada(TipoDeEntrada._MEIA);
-        ingresso.ingressoPodeSerIsento(ingresso.toDTO());
         ingresso.setPagamentoRealizado(true);
-
+        ingresso.setPreco(ingresso.getPreco());
+        
         CartaoDeCredito cartao = new CartaoDeCredito();
         cartao.setNumParcelas(1);
-        cartao.setTaxa(cartao.getTaxa());
         Compra compra = new Compra();
         compra.setFormaDePagamento(cartao);
+        compra.getIngressos().add(ingresso);
         compra.calcularValorCompra();
 
         

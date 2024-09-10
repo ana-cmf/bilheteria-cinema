@@ -18,7 +18,7 @@ public class SalaDeExibicao {
         criarAssento(quantidadeDeAssentos);
     }
 
-    private SalaDeExibicao() {
+    SalaDeExibicao() {
     }
 
     private Assento[] criarAssento(int quantidadeDeAssentos) {

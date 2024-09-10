@@ -11,6 +11,7 @@ public class Exibicao {
 
     public Exibicao() {
         this.id = System.currentTimeMillis();
+        this.salaDeExibicao = new SalaDeExibicao();
 
     }
     public Filme getFilme() {

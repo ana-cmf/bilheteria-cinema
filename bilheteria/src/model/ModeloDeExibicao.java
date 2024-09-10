@@ -8,3 +8,4 @@ public enum ModeloDeExibicao {
         return this.name();
     }
 }
+

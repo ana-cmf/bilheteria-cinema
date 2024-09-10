@@ -11,8 +11,11 @@ public class Assento {
     public Assento(int posicao){
         this.posicao = posicao;
         this.reservado = false;
+
     }
-   
+    public Assento() {
+        this.id = System.currentTimeMillis();
+    }
     public Assento(Long id) {
 	    this.id = System.currentTimeMillis();
     }
@@ -48,19 +51,19 @@ public class Assento {
             id, posicao, reservado ? "Sim" : "Não"
         );
 }
-public static Assento fromDTO(AssentoDTO dto) {
-        Assento assento = new Assento();
-        assento.setId(dto.getId());
-        assento.setPosicao(dto.getPosicao());
-        assento.setReservado(dto.isReservado());
-        return assento;
-    }
-
-    public AssentoDTO toDTO() {
-        AssentoDTO dto = new AssentoDTO();
-        dto.setId(this.id);
-        dto.setPosicao(this.posicao);
-        dto.setReservado(this.reservado);
-        return dto;
-    }
+	public static Assento fromDTO(AssentoDTO dto) {
+	        Assento assento = new Assento();
+	        assento.setId(dto.getId());
+	        assento.setPosicao(dto.getPosicao());
+	        assento.setReservado(dto.isReservado());
+	        return assento;
+	    }
+	
+	    public AssentoDTO toDTO() {
+	        AssentoDTO dto = new AssentoDTO();
+	        dto.setId(this.id);
+	        dto.setPosicao(this.posicao);
+	        dto.setReservado(this.reservado);
+	        return dto;
+	    }
 }

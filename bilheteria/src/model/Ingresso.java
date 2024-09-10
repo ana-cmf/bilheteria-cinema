@@ -1,12 +1,11 @@
 package model;
 
+import dto.FilmeDTO;
 import dto.IngressoDTO;
 import dto.TipoDeEntradaDTO;
-import model.execption.CpfInvalidoException;
-import model.execption.EmailInvalidoException;
 import model.execption.SecaoExibidaException;
 
-public class Ingresso{
+public class Ingresso implements Clonagem{
     private Long id;
     private Exibicao exibicao;
     private Assento assento;
@@ -51,6 +50,17 @@ public class Ingresso{
         return preco;
     }
     public void setPreco(float preco) {
+    	if (exibicao.getSalaDeExibicao().getModeloDeExibicao() == ModeloDeExibicao._3D) {
+    		preco=preco + 10f;
+        }
+        if (isMeiaEntrada(TipoDeEntrada._MEIA.toDTO())) {
+            preco = preco / 2;
+            }
+        if(ingressoPodeSerIsento(exibicao.getFilme().toDTO())){
+            ingressoIsentado(exibicao.getFilme().toDTO());
+            preco +=0;
+
+        }
         this.preco = preco;
     }
 
@@ -72,13 +82,13 @@ public class Ingresso{
         }
         return true;
      }
-     public boolean ingressoPodeSerIsento(IngressoDTO ingresso) {
-    	 return ingresso.getExibicao().getFilme().getClassificacaoIndicativa() == 0;
+     public boolean ingressoPodeSerIsento(FilmeDTO ingresso) {
+    	 return ingresso.getClassificacaoIndicativa() == 0;
      }
-     public void ingressoIsentado(IngressoDTO ingresso) {
+     public void ingressoIsentado(FilmeDTO ingresso) {
     	 if(ingressoPodeSerIsento(ingresso)) {
     		 float precoIsento=0f;
-    		 ingresso.setPreco(precoIsento);
+    		 preco =precoIsento;
         }
     }
 
@@ -101,11 +111,10 @@ public class Ingresso{
     public boolean isMeiaEntrada(TipoDeEntradaDTO dto){
         return dto != null && TipoDeEntrada._MEIA.equals(TipoDeEntrada.valueOf(dto.getTipo().toUpperCase()));
     }
-    public static Ingresso fromDTO(IngressoDTO dto) throws EmailInvalidoException, CpfInvalidoException {
+    public static Ingresso fromDTO(IngressoDTO dto)  {
         Ingresso ingresso = new Ingresso();
         ingresso.setId(dto.getId());
         ingresso.setPreco(dto.getPreco());
-        ingresso.setCliente(Cliente.fromDTO(dto.getCliente()));
         ingresso.setExibicao(Exibicao.fromDTO(dto.getExibicao()));
         ingresso.setAssento(Assento.fromDTO(dto.getAssento()));
 
@@ -118,15 +127,21 @@ public class Ingresso{
         IngressoDTO dto = new IngressoDTO();
         dto.setId(this.id);
         dto.setAssento(this.assento.toDTO());
-        dto.setCliente(this.cliente.toDTO());
         dto.setExibicao(this.exibicao.toDTO());
         dto.setPreco(this.preco);
         dto.setTipoDeEntrada(this.tipoDeEntrada != null ? this.tipoDeEntrada.toDTO() : null); 
         dto.setPagamentoRealizado(this.pagamentoRealizado);
         return dto;
     }
-}
 
-
-
-    
+	@Override
+	public IngressoDTO clonarIngresso() {
+		Ingresso ingresso = new Ingresso();
+		ingresso.setAssento(getAssento());
+		ingresso.setExibicao(getExibicao());
+		ingresso.setId(getId());
+		ingresso.setPagamentoRealizado(isPagamentoRealizado());
+		
+		return ingresso.toDTO();
+	}
+}    

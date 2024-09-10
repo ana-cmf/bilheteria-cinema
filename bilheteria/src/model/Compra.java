@@ -4,8 +4,7 @@ import dto.CompraDTO;
 import dto.IngressoDTO;
 import java.util.ArrayList;
 import java.util.List;
-import model.execption.CpfInvalidoException;
-import model.execption.EmailInvalidoException;
+
 
 
 public class Compra {
@@ -13,9 +12,15 @@ public class Compra {
     private float total;
     private FormaDePagamento formaDePagamento;
     private Long id;
-
     
-    public Compra() {
+    
+    public Compra(List<Ingresso> ingressos, float total, FormaDePagamento formaDePagamento, Long id) {
+		this.ingressos = ingressos;
+		this.total = total;
+		this.formaDePagamento = formaDePagamento;
+		this.id = id;
+	}
+	public Compra(){
         this.id = System.currentTimeMillis();
         this.ingressos = new ArrayList<>();
     }
@@ -26,9 +31,7 @@ public class Compra {
     public void setIngressos(List<Ingresso> ingressos) {
         this.ingressos = ingressos;
     }
-
-
-    public void adicionarIngresso(IngressoDTO dto) throws EmailInvalidoException, CpfInvalidoException {
+    public void adicionarIngresso(IngressoDTO dto){
         if (dto != null) {
             Ingresso ingresso = Ingresso.fromDTO(dto);
             ingressos.add(ingresso);
@@ -74,7 +77,7 @@ public class Compra {
         List<IngressoDTO> ingressoDTOs = new ArrayList<>();
 
         for (Ingresso ingresso : ingressos) {
-            dto.getIngressos().add(ingresso.toDTO());
+            adicionarIngresso(ingresso.toDTO());
 
         }
         dto.setIngressos(ingressoDTOs);
