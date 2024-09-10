@@ -12,9 +12,5 @@ public class AssentoController{
     public AssentoController(){
         this.assentodao= new AssentoDAOImpl();
     }
-    public void ProcurarAssentoControlller(Assento sala){
-
-        assentodao.buscarAssento(sala);
-    }
     
 }

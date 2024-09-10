@@ -4,7 +4,8 @@ import model.Administrador;
 import dao.AdministradorDAO;
 import dao.AdministradorDAOImpl;
 import dao.FucionarioDAO;
-import dao.FuncionarioImpl;
+import dao.FuncionarioDAOImpl;
+import dao.exception.FuncionarioNaoEncontradoPeloEmailException;
 import dto.AdministradorDTO;
 import dto.FuncionarioDTO;
 import model.Funcionario;
@@ -20,19 +21,29 @@ public class LoginController {
     private Administrador admin;
     private Funcionario funcionario;
 
-    public LoginController(){
+    public LoginController(TelaLogin tela){
         this.admin = Administrador.getInstancia();
         this.adminDAO = new AdministradorDAOImpl();
-        this.funcionarioDAO = new FuncionarioImpl();
+        this.funcionarioDAO = new FuncionarioDAOImpl();
         this.funcionario = new Funcionario();
+        this.telaLogin = tela;
     }
 
-    public void logarUsuario(AdministradorDTO adminDTO, FuncionarioDTO funcionarioDTO){
+
+    public LoginController() {
+    }
+
+    public void logarUsuario(AdministradorDTO adminDTO){
         if(adminDAO.autenticarAdministrador(adminDTO)){
             new TelaInicialAdministrador();
         }else{
-            new TelaInicialFuncionario();
+            try {
+                FuncionarioDTO dto = funcionarioDAO.buscarFuncionarioPeloEmail(telaLogin.salvarDadosParaFuncionario());
+                TelaInicialFuncionario telaFuncionario = new TelaInicialFuncionario();
+                telaFuncionario.setFuncionario(dto);
+            } catch (FuncionarioNaoEncontradoPeloEmailException e) {
+                telaLogin.mostrarMensagensDeErroDoNome();
+            }
         }
     }
-
 }

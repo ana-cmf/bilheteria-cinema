@@ -1,7 +1,7 @@
 package controller;
 
 import dao.FucionarioDAO;
-import dao.FuncionarioImpl;
+import dao.FuncionarioDAOImpl;
 import dto.FuncionarioDTO;
 import model.Funcionario;
 import model.execption.CpfInvalidoException;
@@ -13,10 +13,9 @@ public class FuncionarioController {
     private FucionarioDAO funcionariodao;
 
     public FuncionarioController() {
-        this.funcionariodao = new FuncionarioImpl();
+        this.funcionariodao = new FuncionarioDAOImpl();
     }
 
-    
     public void cadastrarClienteController(FuncionarioDTO funcionariodto){
         funcionario.setNomeCompleto(funcionariodto.getNomeCompleto());
         try {
@@ -61,5 +60,4 @@ public class FuncionarioController {
         }
     }
     }
-
 }
